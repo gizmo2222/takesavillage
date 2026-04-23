@@ -20,6 +20,7 @@ jobs:
             ${{ secrets.SFTP_USER }}@takesavillage.la <<'SFTP'
           put index.html /home/takesavillage/takesavillage.la/index.html
           put logo.png /home/takesavillage/takesavillage.la/logo.png
+          put favicon.svg /home/takesavillage/takesavillage.la/favicon.svg
           SFTP
 
       - name: Confirm
