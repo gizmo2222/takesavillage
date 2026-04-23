@@ -17,7 +17,7 @@ jobs:
         run: |
           sudo apt-get install -y sshpass > /dev/null 2>&1
           sshpass -e sftp -o StrictHostKeyChecking=no \
-            ${{ secrets.SFTP_USER }}@takesavillage.la <<'SFTP'
+            ${{ secrets.SFTP_USER }}@metacrystal.com <<'SFTP'
           put index.html /home/nstrupp/takesavillage.la/index.html
           put logo.png /home/nstrupp/takesavillage.la/logo.png
           SFTP
