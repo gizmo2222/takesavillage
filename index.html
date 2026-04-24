@@ -199,19 +199,60 @@
       line-height: 1.7;
     }
 
-    .coming-soon {
+    /* ── dates grid ── */
+    .dates {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1.5rem;
+      margin: 1.4rem auto 0;
+      max-width: 260px;
+      text-align: left;
+    }
+
+    .date-item {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--brown);
+      padding: 0.3em 0;
+      border-bottom: 1px dashed rgba(92,51,23,0.15);
+    }
+
+    .date-item span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--teal);
+      letter-spacing: 0.05em;
+    }
+
+    .ticket-note {
+      margin-top: 1.2rem;
+      font-size: 0.82rem;
+      color: var(--text);
+      opacity: 0.6;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .ticket-btn {
       display: inline-block;
       margin-top: 1.5rem;
       background: var(--orange);
       color: #fff;
       font-family: 'Baloo 2', cursive;
       font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.6em 1.6em;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      padding: 0.65em 2em;
       border-radius: 100px;
+      text-decoration: none;
       box-shadow: 0 4px 16px rgba(232,114,26,0.35);
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .ticket-btn:hover {
+      background: var(--brown);
+      transform: translateY(-2px);
     }
 
     /* ── dots row ── */
@@ -299,8 +340,19 @@
   <div class="show-card">
     <p class="show-title">Constellations</p>
     <p class="show-sub">An Intimate Backyard Performance</p>
-    <p class="show-desc">A play we have always wanted to do together — performed live, up close, right where the village began.</p>
-    <span class="coming-soon">Show Info Coming Soon</span>
+    <p class="show-desc">A story about love, physics, and how we try to connect — performed live, up close, right where the village began. We hope you will join us for theater, cocktails, and an intimate evening of connection and shared experience at The Village. ❤️</p>
+
+    <div class="dates">
+      <div class="date-item">Friday, May 8<span>Week One</span></div>
+      <div class="date-item">Friday, May 15<span>Week Two</span></div>
+      <div class="date-item">Saturday, May 9<span>Week One</span></div>
+      <div class="date-item">Saturday, May 16<span>Week Two</span></div>
+      <div class="date-item">Sunday, May 10<span>Week One</span></div>
+      <div class="date-item">Sunday, May 17<span>Week Two</span></div>
+    </div>
+
+    <p class="ticket-note">Please purchase tickets ahead of time — our seating is limited.</p>
+    <a class="ticket-btn" href="https://tinyurl.com/TAVConstellationsPlay" target="_blank" rel="noopener">Get Tickets on Eventbrite</a>
   </div>
   <div class="dots">
     <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
