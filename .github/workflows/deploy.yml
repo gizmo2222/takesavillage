@@ -21,6 +21,7 @@ jobs:
           put index.html /home/takesavillage/takesavillage.la/index.html
           put logo.png /home/takesavillage/takesavillage.la/logo.png
           put favicon.svg /home/takesavillage/takesavillage.la/favicon.svg
+          put flier.jpg /home/takesavillage/takesavillage.la/flier.jpg
           SFTP
 
       - name: Confirm
