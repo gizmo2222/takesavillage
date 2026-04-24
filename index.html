@@ -124,119 +124,131 @@
       animation: fadeUp 0.8s 0.8s ease both;
     }
 
-    /* ── show card ── */
+    /* ── show section (unified dark) ── */
     .show-section {
-      background: var(--warm);
-      padding: 3rem 1.5rem 3.5rem;
-      text-align: center;
+      background: #0d0d1a;
+      padding: 4rem 2rem;
     }
 
     .show-eyebrow {
       font-size: 0.7rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--teal);
+      color: var(--teal2);
       font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .show-card {
-      display: inline-block;
-      background: #fff;
-      border-radius: 20px;
-      padding: 2.5rem 3rem;
-      max-width: 480px;
-      width: 100%;
-      box-shadow: 0 8px 40px rgba(92,51,23,0.12), 0 2px 8px rgba(92,51,23,0.08);
-      border: 3px solid var(--orange);
-      position: relative;
-    }
-
-    /* Peace sign decoration */
-    .show-card::before {
-      content: '☮';
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--orange);
-      color: #fff;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      line-height: 36px;
+      margin-bottom: 2rem;
       text-align: center;
+    }
+
+    .show-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 3.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ── flier ── */
+    .flier-img {
+      width: min(340px, 42vw);
+      flex-shrink: 0;
+      border-radius: 12px;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.7), 0 0 0 2px rgba(200,169,110,0.25);
+    }
+
+    /* ── show info panel ── */
+    .show-info {
+      flex: 1;
+      min-width: 0;
+      color: #fff;
+      text-align: left;
     }
 
     .show-title {
       font-family: 'Baloo 2', cursive;
-      font-size: clamp(2.4rem, 7vw, 3.6rem);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
       font-weight: 800;
-      color: var(--brown);
+      color: var(--orange2);
       line-height: 1;
-      text-shadow: 2px 2px 0 rgba(232,114,26,0.2);
+      text-shadow: 0 2px 20px rgba(240,160,48,0.4);
     }
 
-    .show-sub {
-      margin-top: 0.5rem;
-      font-size: 0.8rem;
+    .show-presented {
+      margin-top: 0.3rem;
+      font-size: 0.75rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--teal);
+      color: rgba(255,255,255,0.4);
       font-weight: 600;
     }
 
     .show-desc {
       margin-top: 1.2rem;
       font-style: italic;
-      color: var(--text);
-      opacity: 0.7;
+      color: rgba(255,255,255,0.7);
       font-size: 0.95rem;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     /* ── dates grid ── */
+    .dates-label {
+      margin-top: 1.6rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--teal2);
+      font-weight: 600;
+    }
+
     .dates {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.5rem 1.5rem;
-      margin: 1.4rem auto 0;
-      max-width: 260px;
-      text-align: left;
+      gap: 0.4rem 1.2rem;
+      margin-top: 0.6rem;
     }
 
     .date-item {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      color: var(--brown);
+      color: rgba(255,255,255,0.9);
       padding: 0.3em 0;
-      border-bottom: 1px dashed rgba(92,51,23,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .date-item span {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 400;
-      color: var(--teal);
-      letter-spacing: 0.05em;
+      color: var(--teal2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── venue ── */
+    .venue {
+      margin-top: 1.4rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    .venue strong {
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
     }
 
     .ticket-note {
-      margin-top: 1.2rem;
-      font-size: 0.82rem;
-      color: var(--text);
-      opacity: 0.6;
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
       font-style: italic;
       line-height: 1.5;
     }
 
     .ticket-btn {
       display: inline-block;
-      margin-top: 1.5rem;
+      margin-top: 1.4rem;
       background: var(--orange);
       color: #fff;
       font-family: 'Baloo 2', cursive;
@@ -246,80 +258,42 @@
       padding: 0.65em 2em;
       border-radius: 100px;
       text-decoration: none;
-      box-shadow: 0 4px 16px rgba(232,114,26,0.35);
+      box-shadow: 0 4px 24px rgba(232,114,26,0.45);
       transition: background 0.2s, transform 0.15s;
     }
 
     .ticket-btn:hover {
-      background: var(--brown);
+      background: var(--orange2);
       transform: translateY(-2px);
     }
 
-    /* ── flier ── */
-    .flier-section {
-      background: #0d0d1a;
-      padding: 3rem 1.5rem;
-      text-align: center;
-    }
-
-    .flier-eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--teal2);
-      font-weight: 600;
-      margin-bottom: 1.2rem;
-    }
-
-    .flier-img {
-      width: min(420px, 90vw);
-      border-radius: 12px;
-      box-shadow: 0 12px 60px rgba(0,0,0,0.6), 0 0 0 2px rgba(200,169,110,0.2);
-    }
-
-    /* ── venue & credits ── */
-    .venue-credits {
-      margin-top: 1.8rem;
-      color: rgba(255,255,255,0.75);
-      font-size: 0.95rem;
-      line-height: 2;
-    }
-
-    .venue-credits strong {
-      color: var(--orange2);
-      font-weight: 600;
-    }
-
-    .venue-credits .address {
-      font-size: 0.82rem;
-      opacity: 0.55;
-      letter-spacing: 0.05em;
-    }
-
-    .venue-credits .credits {
-      margin-top: 0.8rem;
-      font-size: 0.8rem;
-      opacity: 0.5;
+    .credits {
+      margin-top: 1.2rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
       font-style: italic;
     }
 
-    /* ── dots row ── */
-    .dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 2rem 0 0;
+    /* mobile: stack vertically */
+    @media (max-width: 620px) {
+      .show-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+      .flier-img {
+        width: min(300px, 85vw);
+      }
+      .show-info {
+        text-align: center;
+      }
+      .dates {
+        max-width: 260px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+      }
     }
-
-    .dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-    }
-    .dot:nth-child(1) { background: var(--orange); }
-    .dot:nth-child(2) { background: var(--teal); }
-    .dot:nth-child(3) { background: var(--orange2); }
-    .dot:nth-child(4) { background: var(--teal2); }
-    .dot:nth-child(5) { background: var(--brown); }
 
     /* ── footer ── */
     footer {
@@ -377,53 +351,44 @@
   </p>
 </section>
 
-<!-- wave transition -->
+<!-- wave transition: teal → dark -->
 <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
   <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#2EADA3"/>
-  <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#FDE8C0"/>
+  <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#0d0d1a"/>
 </svg>
 
 <section class="show-section">
   <p class="show-eyebrow">Our First Production</p>
-  <div class="show-card">
-    <p class="show-title">Constellations</p>
-    <p class="show-sub">An Intimate Backyard Performance</p>
-    <p class="show-desc">A story about love, physics, and how we try to connect — performed live, up close, right where the village began. We hope you will join us for theater, cocktails, and an intimate evening of connection and shared experience at The Village. ❤️</p>
+  <div class="show-inner">
+    <img class="flier-img" src="flier.jpg" alt="Constellations — Takes a Village LA">
+    <div class="show-info">
+      <p class="show-title">Constellations</p>
+      <p class="show-presented">Takes a Village &nbsp;·&nbsp; An Intimate Backyard Performance</p>
+      <p class="show-desc">A story about love, physics, and how we try to connect — performed live, up close, right where the village began. We hope you will join us for theater, cocktails, and an intimate evening of connection and shared experience at The Village. ❤️</p>
 
-    <div class="dates">
-      <div class="date-item">Friday, May 8<span>Week One</span></div>
-      <div class="date-item">Friday, May 15<span>Week Two</span></div>
-      <div class="date-item">Saturday, May 9<span>Week One</span></div>
-      <div class="date-item">Saturday, May 16<span>Week Two</span></div>
-      <div class="date-item">Sunday, May 10<span>Week One</span></div>
-      <div class="date-item">Sunday, May 17<span>Week Two</span></div>
+      <p class="dates-label">Select a Date</p>
+      <div class="dates">
+        <div class="date-item">Friday, May 8<span>Week One</span></div>
+        <div class="date-item">Friday, May 15<span>Week Two</span></div>
+        <div class="date-item">Saturday, May 9<span>Week One</span></div>
+        <div class="date-item">Saturday, May 16<span>Week Two</span></div>
+        <div class="date-item">Sunday, May 10<span>Week One</span></div>
+        <div class="date-item">Sunday, May 17<span>Week Two</span></div>
+      </div>
+
+      <div class="venue">
+        <strong>The Village</strong> &nbsp;·&nbsp; Van Nuys, CA<br>
+        15147 Hamlin Street
+      </div>
+
+      <p class="ticket-note">Please purchase tickets ahead of time — our seating is limited.</p>
+      <a class="ticket-btn" href="https://tinyurl.com/TAVConstellationsPlay" target="_blank" rel="noopener">Get Tickets on Eventbrite</a>
+      <p class="credits">Directed by Jose Chavarry &nbsp;·&nbsp; Produced by Molly Jackson</p>
     </div>
-
-    <p class="ticket-note">Please purchase tickets ahead of time — our seating is limited.</p>
-    <a class="ticket-btn" href="https://tinyurl.com/TAVConstellationsPlay" target="_blank" rel="noopener">Get Tickets on Eventbrite</a>
-  </div>
-  <div class="dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
 </section>
 
-<!-- wave into flier -->
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-  <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 Z" fill="#FDE8C0"/>
-  <path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="#0d0d1a"/>
-</svg>
-
-<section class="flier-section">
-  <p class="flier-eyebrow">The Show</p>
-  <img class="flier-img" src="flier.jpg" alt="Constellations — Takes a Village LA">
-  <div class="venue-credits">
-    <div><strong>The Village</strong> &nbsp;·&nbsp; Van Nuys, CA</div>
-    <div class="address">15147 Hamlin Street</div>
-    <div class="credits">Directed by Jose Chavarry &nbsp;·&nbsp; Produced by Molly Jackson</div>
-  </div>
-</section>
-
-<!-- wave out of flier -->
+<!-- wave: dark → brown footer -->
 <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
   <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#0d0d1a"/>
   <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#5C3317"/>
