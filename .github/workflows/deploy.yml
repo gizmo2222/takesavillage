@@ -22,12 +22,15 @@ jobs:
           put logo.png /home/takesavillage/takesavillage.la/logo.png
           put favicon.svg /home/takesavillage/takesavillage.la/favicon.svg
           put flier.jpg /home/takesavillage/takesavillage.la/flier.jpg
+          -mkdir /home/takesavillage/takesavillage.la/gallery
+          put "gallery/gallery (1).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (1).jpg"
+          put "gallery/gallery (2).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (2).jpg"
+          put "gallery/gallery (3).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (3).jpg"
+          put "gallery/gallery (4).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (4).jpg"
+          put "gallery/gallery (5).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (5).jpg"
+          put "gallery/gallery (6).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (6).jpg"
+          put "gallery/gallery (7).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (7).jpg"
           SFTP
-          sshpass -e ssh -o StrictHostKeyChecking=no \
-            ${{ secrets.SFTP_USER }}@takesavillage.la \
-            "mkdir -p /home/takesavillage/takesavillage.la/gallery"
-          sshpass -e scp -o StrictHostKeyChecking=no -r \
-            gallery/ ${{ secrets.SFTP_USER }}@takesavillage.la:/home/takesavillage/takesavillage.la/gallery/
 
       - name: Confirm
         run: echo "✅ Deployed to takesavillage.la"
