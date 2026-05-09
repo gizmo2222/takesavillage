@@ -23,6 +23,11 @@ jobs:
           put favicon.svg /home/takesavillage/takesavillage.la/favicon.svg
           put flier.jpg /home/takesavillage/takesavillage.la/flier.jpg
           SFTP
+          sshpass -e ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.SFTP_USER }}@takesavillage.la \
+            "mkdir -p /home/takesavillage/takesavillage.la/gallery"
+          sshpass -e scp -o StrictHostKeyChecking=no -r \
+            gallery/ ${{ secrets.SFTP_USER }}@takesavillage.la:/home/takesavillage/takesavillage.la/gallery/
 
       - name: Confirm
         run: echo "✅ Deployed to takesavillage.la"

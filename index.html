@@ -295,6 +295,84 @@
       }
     }
 
+    /* ── donate button ── */
+    .donate-btn {
+      display: inline-block;
+      margin-top: 1.2rem;
+      background: transparent;
+      color: var(--orange);
+      font-family: 'Baloo 2', cursive;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5em 1.4em;
+      border-radius: 100px;
+      border: 2px solid var(--orange);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .donate-btn:hover {
+      background: var(--orange);
+      color: #fff;
+    }
+
+    /* ── gallery ── */
+    .gallery-section {
+      background: var(--warm);
+      padding: 3rem 0 3.5rem;
+    }
+
+    .gallery-heading {
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 1.4rem;
+      padding: 0 1.5rem;
+    }
+
+    .gallery-strip {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding: 0.5rem 2rem 1.2rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--orange) var(--warm);
+    }
+
+    .gallery-strip::-webkit-scrollbar {
+      height: 4px;
+    }
+    .gallery-strip::-webkit-scrollbar-track {
+      background: rgba(92,51,23,0.1);
+      border-radius: 2px;
+    }
+    .gallery-strip::-webkit-scrollbar-thumb {
+      background: var(--orange);
+      border-radius: 2px;
+    }
+
+    .gallery-strip img {
+      height: 280px;
+      width: auto;
+      flex-shrink: 0;
+      border-radius: 10px;
+      object-fit: cover;
+      scroll-snap-align: start;
+      box-shadow: 0 4px 20px rgba(92,51,23,0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .gallery-strip img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 32px rgba(92,51,23,0.25);
+    }
+
     /* ── footer ── */
     footer {
       background: var(--brown);
@@ -336,6 +414,7 @@
 <section class="hero">
   <img class="logo" src="logo.png" alt="Takes a Village LA">
   <p class="tagline">Los Angeles &nbsp;·&nbsp; Nonprofit Theater</p>
+  <a class="donate-btn" href="#">Donate</a>
 </section>
 
 <!-- wave transition -->
@@ -388,6 +467,26 @@
   </div>
 </section>
 
+<!-- wave: dark → warm gallery -->
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#0d0d1a"/>
+  <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#FDE8C0"/>
+</svg>
+
+<section class="gallery-section">
+  <p class="gallery-heading">Opening Night</p>
+  <div class="gallery-strip">
+    <img src="gallery/gallery (1).jpg" alt="Opening night photo 1">
+    <img src="gallery/gallery (2).jpg" alt="Opening night photo 2">
+    <img src="gallery/gallery (3).jpg" alt="Opening night photo 3">
+    <img src="gallery/gallery (4).jpg" alt="Opening night photo 4">
+    <img src="gallery/gallery (5).jpg" alt="Opening night photo 5">
+    <img src="gallery/gallery (6).jpg" alt="Opening night photo 6">
+    <img src="gallery/gallery (7).jpg" alt="Opening night photo 7">
+  </div>
+</section>
+
+<!-- wave: warm → brown footer -->
 <!-- wave: dark → brown footer -->
 <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
   <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#0d0d1a"/>
