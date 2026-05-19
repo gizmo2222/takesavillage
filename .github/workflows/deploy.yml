@@ -30,6 +30,7 @@ jobs:
           put "gallery/gallery (5).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (5).jpg"
           put "gallery/gallery (6).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (6).jpg"
           put "gallery/gallery (7).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (7).jpg"
+          put "gallery/gallery (8).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (8).jpg"
           SFTP
 
       - name: Confirm
