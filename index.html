@@ -300,6 +300,40 @@
       }
     }
 
+    /* ── upcoming section ── */
+    .upcoming-section {
+      background: var(--cream);
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .upcoming-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .upcoming-heading {
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      color: var(--brown);
+      margin-bottom: 1rem;
+    }
+
+    .upcoming-placeholder {
+      max-width: 480px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+      opacity: 0.6;
+      font-style: italic;
+    }
+
     /* ── donate button ── */
     .donate-btn {
       display: inline-block;
@@ -436,14 +470,26 @@
   </p>
 </section>
 
-<!-- wave transition: teal → dark -->
+<!-- wave: teal → cream -->
 <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
   <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#2EADA3"/>
-  <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#0d0d1a"/>
+  <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#FFF6E8"/>
+</svg>
+
+<section class="upcoming-section">
+  <p class="upcoming-eyebrow">What's Next</p>
+  <h2 class="upcoming-heading">Upcoming Events</h2>
+  <p class="upcoming-placeholder">Our next production is in the works. Follow us on Instagram and check back here for announcements.</p>
+</section>
+
+<!-- wave: cream → dark -->
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 Z" fill="#FFF6E8"/>
+  <path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="#0d0d1a"/>
 </svg>
 
 <section class="show-section">
-  <p class="show-eyebrow">Our First Production</p>
+  <p class="show-eyebrow">Past Production</p>
   <div class="show-inner">
     <img class="flier-img" src="flier.jpg" alt="Constellations — Takes a Village LA">
     <div class="show-info">
@@ -459,7 +505,7 @@
         <div class="date-item past">Saturday, May 16<span>Week Two</span></div>
         <div class="date-item past">Sunday, May 10<span>Week One</span></div>
         <div class="date-item past">Sunday, May 17<span>Week Two</span></div>
-        <div class="date-item">Saturday, May 23<span>Added Performance</span></div>
+        <div class="date-item past">Saturday, May 23<span>Added Performance</span></div>
       </div>
 
       <div class="venue">
@@ -467,8 +513,6 @@
         15147 Hamlin Street
       </div>
 
-      <p class="ticket-note">Please purchase tickets ahead of time — our seating is limited.</p>
-      <a class="ticket-btn" href="https://tinyurl.com/TAVConstellationsPlay" target="_blank" rel="noopener">Get Tickets on Eventbrite</a>
       <p class="credits">Directed by Jose Chavarry &nbsp;·&nbsp; Produced by Molly Jackson</p>
     </div>
   </div>
@@ -495,7 +539,6 @@
 </section>
 
 <!-- wave: warm → brown footer -->
-<!-- wave: dark → brown footer -->
 <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
   <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#0d0d1a"/>
   <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#5C3317"/>
