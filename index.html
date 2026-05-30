@@ -3,10 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Takes a Village LA</title>
+  <title>Takes a Village LA — Nonprofit Theater in Los Angeles</title>
+  <meta name="description" content="Takes a Village is a Los Angeles nonprofit theater company creating intimate, backyard performances — connection, conversation, and shared experience at The Village in Van Nuys.">
+  <meta name="theme-color" content="#2EADA3">
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Takes a Village LA">
+  <meta property="og:title" content="Takes a Village LA — Nonprofit Theater">
+  <meta property="og:description" content="A Los Angeles nonprofit theater company creating intimate, backyard performances. Connection, conversation, and shared experience at The Village.">
+  <meta property="og:url" content="https://takesavillage.la/">
+  <meta property="og:image" content="https://takesavillage.la/logo.png">
+  <meta property="og:image:alt" content="Takes a Village logo">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Takes a Village LA — Nonprofit Theater">
+  <meta name="twitter:description" content="A Los Angeles nonprofit theater company creating intimate, backyard performances.">
+  <meta name="twitter:image" content="https://takesavillage.la/logo.png">
+
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -243,39 +261,10 @@
       font-weight: 600;
     }
 
-    .ticket-note {
-      margin-top: 1rem;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.4);
-      font-style: italic;
-      line-height: 1.5;
-    }
-
-    .ticket-btn {
-      display: inline-block;
-      margin-top: 1.4rem;
-      background: var(--orange);
-      color: #fff;
-      font-family: 'Baloo 2', cursive;
-      font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: 0.05em;
-      padding: 0.65em 2em;
-      border-radius: 100px;
-      text-decoration: none;
-      box-shadow: 0 4px 24px rgba(232,114,26,0.45);
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .ticket-btn:hover {
-      background: var(--orange2);
-      transform: translateY(-2px);
-    }
-
     .credits {
       margin-top: 1.2rem;
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.3);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
       font-style: italic;
     }
 
@@ -349,7 +338,6 @@
     .ig-link svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
 
     .ig-link.on-light { color: var(--teal); }
-    .ig-link.on-dark  { color: rgba(255,255,255,0.7); }
 
     /* ── donate button ── */
     .donate-btn {
@@ -394,7 +382,7 @@
       display: flex;
       gap: 0.75rem;
       overflow-x: auto;
-      justify-content: center;
+      justify-content: safe center;
       padding: 0.5rem 2rem 1.2rem;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
@@ -462,24 +450,48 @@
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+
+    /* keyboard focus visibility */
+    a:focus-visible {
+      outline: 3px solid var(--orange2);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* respect reduced-motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
 
+<!-- reusable icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ig-icon" viewBox="0 0 24 24">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+</svg>
+
 <div class="top-band"></div>
 
 <section class="hero">
-  <img class="logo" src="logo.png" alt="Takes a Village LA">
+  <img class="logo" src="logo.png" alt="Takes a Village LA" width="430" height="462" fetchpriority="high">
   <p class="tagline">Los Angeles &nbsp;·&nbsp; Nonprofit Theater</p>
-  <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" style="margin-top:0.6rem">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+  <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram" style="margin-top:0.6rem">
+    <svg aria-hidden="true" focusable="false"><use href="#ig-icon"/></svg>
     @takes.a.village.la
   </a>
   <a class="donate-btn" href="https://venmo.com/Takes-a-village1" target="_blank" rel="noopener">Donate via Venmo</a>
 </section>
 
 <!-- wave transition -->
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
   <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 Z" fill="#fde8c0"/>
   <path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="#2EADA3"/>
 </svg>
@@ -492,7 +504,7 @@
 </section>
 
 <!-- wave: teal → cream -->
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
   <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#2EADA3"/>
   <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#FFF6E8"/>
 </svg>
@@ -501,14 +513,14 @@
   <p class="upcoming-eyebrow">What's Next</p>
   <h2 class="upcoming-heading">Upcoming Events</h2>
   <p class="upcoming-placeholder">Our next production is in the works. Follow us on Instagram and check back here for announcements.</p>
-  <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" style="margin-top:1.2rem">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+  <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram" style="margin-top:1.2rem">
+    <svg aria-hidden="true" focusable="false"><use href="#ig-icon"/></svg>
     @takes.a.village.la
   </a>
 </section>
 
 <!-- wave: cream → dark -->
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
   <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 Z" fill="#FFF6E8"/>
   <path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="#0d0d1a"/>
 </svg>
@@ -516,7 +528,7 @@
 <section class="show-section">
   <p class="show-eyebrow">Past Production</p>
   <div class="show-inner">
-    <img class="flier-img" src="flier.jpg" alt="Constellations — Takes a Village LA">
+    <img class="flier-img" src="flier.jpg" alt="Constellations — Takes a Village LA" width="926" height="1158" loading="lazy" decoding="async">
     <div class="show-info">
       <p class="show-title">Constellations</p>
       <p class="show-presented">Takes a Village &nbsp;·&nbsp; An Intimate Backyard Performance</p>
@@ -544,7 +556,7 @@
 </section>
 
 <!-- wave: dark → warm gallery -->
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
   <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#0d0d1a"/>
   <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#FDE8C0"/>
 </svg>
@@ -552,28 +564,26 @@
 <section class="gallery-section">
   <p class="gallery-heading">Opening Night</p>
   <div class="gallery-strip">
-    <img src="gallery/gallery (1).jpg" alt="Opening night photo 1">
-    <img src="gallery/gallery (2).jpg" alt="Opening night photo 2">
-    <img src="gallery/gallery (3).jpg" alt="Opening night photo 3">
-    <img src="gallery/gallery (4).jpg" alt="Opening night photo 4">
-    <img src="gallery/gallery (5).jpg" alt="Opening night photo 5">
-    <img src="gallery/gallery (6).jpg" alt="Opening night photo 6">
-    <img src="gallery/gallery (7).jpg" alt="Opening night photo 7">
-    <img src="gallery/gallery (8).jpg" alt="Opening night photo 8">
+    <img src="gallery/gallery (1).jpg" alt="Constellations opening night photo 1" width="384" height="512" loading="lazy" decoding="async">
+    <img src="gallery/gallery (2).jpg" alt="Constellations opening night photo 2" width="236" height="512" loading="lazy" decoding="async">
+    <img src="gallery/gallery (3).jpg" alt="Constellations opening night photo 3" width="384" height="512" loading="lazy" decoding="async">
+    <img src="gallery/gallery (4).jpg" alt="Constellations opening night photo 4" width="384" height="512" loading="lazy" decoding="async">
+    <img src="gallery/gallery (5).jpg" alt="Constellations opening night photo 5" width="384" height="512" loading="lazy" decoding="async">
+    <img src="gallery/gallery (6).jpg" alt="Constellations opening night photo 6" width="384" height="512" loading="lazy" decoding="async">
+    <img src="gallery/gallery (7).jpg" alt="Constellations opening night photo 7" width="384" height="512" loading="lazy" decoding="async">
+    <img src="gallery/gallery (8).jpg" alt="Constellations opening night photo 8" width="341" height="512" loading="lazy" decoding="async">
   </div>
 </section>
 
 <!-- wave: warm → brown footer -->
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
   <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#0d0d1a"/>
   <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#5C3317"/>
 </svg>
 
 <footer>
-  <a class="social-link" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-    </svg>
+  <a class="social-link" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram">
+    <svg aria-hidden="true" focusable="false"><use href="#ig-icon"/></svg>
     @takes.a.village.la
   </a>
   <p class="copyright">&copy; 2026 Takes a Village LA &nbsp;·&nbsp; Nonprofit Organization</p>
