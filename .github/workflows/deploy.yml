@@ -33,6 +33,13 @@ jobs:
           put "gallery/gallery (6).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (6).jpg"
           put "gallery/gallery (7).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (7).jpg"
           put "gallery/gallery (8).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (8).jpg"
+          -mkdir /home/takesavillage/takesavillage.la/archive
+          put archive/lacma.jpg /home/takesavillage/takesavillage.la/archive/lacma.jpg
+          put archive/special-camp.jpg /home/takesavillage/takesavillage.la/archive/special-camp.jpg
+          put archive/csun.jpg /home/takesavillage/takesavillage.la/archive/csun.jpg
+          put archive/note-to-self.jpg /home/takesavillage/takesavillage.la/archive/note-to-self.jpg
+          put archive/full-moon.jpg /home/takesavillage/takesavillage.la/archive/full-moon.jpg
+          put archive/unmasked.jpg /home/takesavillage/takesavillage.la/archive/unmasked.jpg
           SFTP
 
       - name: Confirm

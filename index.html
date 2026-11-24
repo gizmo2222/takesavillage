@@ -25,7 +25,7 @@
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Fraunces:ital,opsz,wght@1,9..144,500..700&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -38,6 +38,12 @@
       --cream:   #FFF6E8;
       --warm:    #FDE8C0;
       --text:    #3A1F08;
+
+      /* ink: text-weight versions of the brand colors. --ink and --teal-ink reach
+         4.5:1 on both --cream and --warm; --orange-ink does on --cream only. */
+      --ink:        #4A2811;
+      --teal-ink:   #176F67;
+      --orange-ink: #B4530C;
     }
 
     html, body {
@@ -46,6 +52,29 @@
       color: var(--text);
       font-family: 'Nunito', sans-serif;
     }
+    /* anchor targets stop below the sticky menu, not under it */
+    html { scroll-padding-top: 3.75rem; }
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+    body { position: relative; }
+
+    /* ── skip link: off-screen until it takes keyboard focus ── */
+    .skip-link {
+      position: absolute;
+      left: 0.75rem;
+      top: -5rem;
+      z-index: 30;
+      background: var(--brown);
+      color: var(--cream);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.7em 1.1em;
+      border-radius: 0 0 8px 8px;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+    main:focus { outline: none; }
 
     /* ── wavy top band ── */
     .top-band {
@@ -59,10 +88,111 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 3rem 1.5rem 2rem;
+      padding: 2.25rem 1.5rem 2rem;
       text-align: center;
       position: relative;
       overflow: hidden;
+    }
+
+    /* the menu: a playbill masthead that stays at the top of the window while the page scrolls */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #fff8ee;   /* the hero gradient's first stop, so the bar sits flush on the hero */
+      border-bottom: 3px double var(--brown);
+      padding: 0 0.75rem;
+    }
+    .site-nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: 0.45rem;
+    }
+    .site-nav li {
+      display: flex;
+      align-items: center;
+      column-gap: 0.45rem;
+    }
+    .site-nav li + li::before {
+      content: "\00B7";
+      content: "\00B7" / "";
+      color: var(--orange-ink);
+      font-weight: 800;
+    }
+    .site-nav a {
+      display: inline-block;
+      padding: 0.75rem 0.3rem;   /* 44px tall or more at both widths */
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.02rem;
+      line-height: 1.3;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .site-nav a:hover {
+      color: var(--orange-ink);
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+
+    /* back-to-top button. No JS: the track starts a screen and a half down the page and
+       the button sticks to the bottom of the window inside it, so it only shows once
+       the page has been scrolled. */
+    .to-top-track {
+      position: absolute;
+      top: 150vh;
+      bottom: 0;
+      right: 0;
+      z-index: 15;
+      display: flex;
+      align-items: flex-end;
+      pointer-events: none;
+    }
+    .to-top {
+      position: sticky;
+      bottom: 1rem;
+      margin: 0 1rem 1rem 0;
+      pointer-events: auto;
+      width: 3rem;
+      height: 3rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--brown);
+      color: var(--cream);
+      border: 2px solid var(--cream);
+      box-shadow: 0 4px 14px rgba(58,31,8,0.35);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .to-top:hover { background: var(--orange-ink); transform: translateY(-2px); }
+    .to-top svg { width: 1.25rem; height: 1.25rem; }
+
+    /* the logo is the page's h1, taped up like the snapshots in the archive:
+       the h1 pops in, the frame carries the tilt and the tape, the image the paper edge */
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      line-height: 0;
+      margin-top: 0.5rem;
+      animation: popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    .logo-frame {
+      display: inline-block;
+      position: relative;
+      transform: rotate(-2deg);
+    }
+    .logo-frame::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: -15px; left: 50%;
+      width: 112px; height: 32px;
+      background: rgba(62,207,195,0.6);
+      transform: translateX(-50%) rotate(-4deg);
     }
 
     /* decorative circles */
@@ -84,12 +214,11 @@
     }
 
     .logo {
-      width: min(320px, 80vw);
+      display: block;
+      width: min(300px, 76vw);
       height: auto;
-      position: relative;
-      z-index: 1;
-      filter: drop-shadow(0 6px 24px rgba(92,51,23,0.18));
-      animation: popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+      border: 10px solid #fff;
+      box-shadow: 4px 6px 0 rgba(92,51,23,0.2);
     }
 
     @keyframes popIn {
@@ -98,11 +227,11 @@
     }
 
     .tagline {
-      margin-top: 0.5rem;
+      margin-top: 1.4rem;
       font-size: 0.75rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--teal);
+      color: var(--teal-ink);
       font-weight: 600;
       animation: fadeUp 0.8s 0.4s ease both;
     }
@@ -112,11 +241,12 @@
       display: block;
       width: 100%;
       line-height: 0;
+      margin-bottom: -1px; /* hide the sub-pixel seam under each wave */
     }
 
     /* ── intro section ── */
     .intro {
-      background: var(--teal);
+      background: var(--teal-ink); /* the two waves around it carry the same hex */
       color: #fff;
       padding: 3rem 1.5rem;
       text-align: center;
@@ -126,7 +256,7 @@
       font-family: 'Baloo 2', cursive;
       font-size: clamp(1.8rem, 5vw, 2.6rem);
       font-weight: 800;
-      color: var(--orange2);
+      color: var(--cream);
       text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
       margin-bottom: 1.2rem;
       animation: fadeUp 0.8s 0.6s ease both;
@@ -138,7 +268,6 @@
       font-size: clamp(1rem, 2.5vw, 1.15rem);
       line-height: 1.85;
       font-weight: 400;
-      opacity: 0.95;
       animation: fadeUp 0.8s 0.8s ease both;
     }
 
@@ -148,13 +277,19 @@
       padding: 4rem 2rem;
     }
 
-    .show-eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--teal2);
+    /* eyebrow labels speak in the archive's voice: Fraunces italic, not tracked capitals */
+    .show-eyebrow, .upcoming-eyebrow, .archive-eyebrow {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
       font-weight: 600;
-      margin-bottom: 2rem;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+    }
+
+    .show-eyebrow {
+      color: var(--teal2);
+      margin-bottom: 2.4rem;
       text-align: center;
     }
 
@@ -168,12 +303,27 @@
     }
 
     /* ── flier ── */
-    .flier-img {
-      width: min(340px, 42vw);
-      height: auto;
+    .flier-frame {
+      position: relative;
       flex-shrink: 0;
-      border-radius: 12px;
-      box-shadow: 0 12px 60px rgba(0,0,0,0.7), 0 0 0 2px rgba(200,169,110,0.25);
+      width: min(340px, 42vw);
+      transform: rotate(-1.5deg);
+    }
+    .flier-frame::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: -16px; left: 50%;
+      width: 118px; height: 34px;
+      background: rgba(240,160,48,0.86);
+      transform: translateX(-50%) rotate(3deg);
+    }
+    .flier-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 8px solid #fff;
+      box-shadow: 6px 8px 0 rgba(0,0,0,0.55);
     }
 
     /* ── show info panel ── */
@@ -198,7 +348,7 @@
       font-size: 0.75rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.7);
       font-weight: 600;
     }
 
@@ -210,43 +360,27 @@
       line-height: 1.75;
     }
 
-    /* ── dates grid ── */
-    .dates-label {
-      margin-top: 1.6rem;
-      font-size: 0.65rem;
+    /* ── the run: one line, the way a playbill lists it ── */
+    .show-run {
+      margin-top: 1.5rem;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.4rem;
+      line-height: 1.3;
+      color: var(--warm);
+    }
+
+    .show-run span {
+      display: block;
+      margin-top: 0.35rem;
+      font-family: 'Nunito', sans-serif;
+      font-style: normal;
+      font-size: 0.75rem;
+      font-weight: 600;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--teal2);
-      font-weight: 600;
-    }
-
-    .dates {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.4rem 1.2rem;
-      margin-top: 0.6rem;
-    }
-
-    .date-item {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.9);
-      padding: 0.3em 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .date-item span {
-      display: block;
-      font-size: 0.65rem;
-      font-weight: 400;
-      color: var(--teal2);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .date-item.past {
-      text-decoration: line-through;
-      opacity: 0.4;
     }
 
     /* ── venue ── */
@@ -276,18 +410,18 @@
         align-items: center;
         gap: 2rem;
       }
-      .flier-img {
-        width: min(300px, 85vw);
+      .flier-frame {
+        width: min(300px, 82vw);
       }
       .show-info {
         text-align: center;
       }
-      .dates {
-        max-width: 260px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: left;
-      }
+    }
+
+    /* three links no longer fit one line at phone width without tightening */
+    @media (max-width: 420px) {
+      .site-nav ul, .site-nav li { column-gap: 0.2rem; }
+      .site-nav a { font-size: 0.95rem; padding: 0.8rem 0.2rem; }
     }
 
     /* ── upcoming section ── */
@@ -298,12 +432,8 @@
     }
 
     .upcoming-eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--orange);
-      font-weight: 600;
-      margin-bottom: 1rem;
+      color: var(--orange-ink);
+      margin-bottom: 0.5rem;
     }
 
     .upcoming-heading {
@@ -319,10 +449,11 @@
       margin: 0 auto;
       font-size: 1rem;
       line-height: 1.8;
-      color: var(--text);
-      opacity: 0.6;
+      color: var(--ink);
       font-style: italic;
     }
+
+    .upcoming-more { margin-top: 0.25rem; }
 
     /* ── instagram link (reused in hero + upcoming) ── */
     .ig-link {
@@ -333,33 +464,37 @@
       font-weight: 600;
       font-size: 0.85rem;
       letter-spacing: 0.05em;
+      /* 44px tap target; the space comes out of the margins around it */
+      min-height: 2.75rem;
+      padding: 0.8rem 0.6rem;
       transition: opacity 0.2s;
     }
     .ig-link:hover { opacity: 0.75; }
     .ig-link svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
 
-    .ig-link.on-light { color: var(--teal); }
+    .ig-link.on-light { color: var(--teal-ink); }
 
     /* ── donate button ── */
     .donate-btn {
       display: inline-block;
-      margin-top: 1.2rem;
-      background: transparent;
-      color: var(--orange);
+      margin-top: 0.4rem;
+      background: var(--orange-ink);
+      color: #fff;
       font-family: 'Baloo 2', cursive;
       font-weight: 600;
       font-size: 0.85rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 0.5em 1.4em;
+      padding: 0.75em 1.4em;   /* 44px tall */
       border-radius: 100px;
-      border: 2px solid var(--orange);
+      border: 2px solid var(--orange-ink);
       text-decoration: none;
-      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 3px 0 rgba(92,51,23,0.25);
+      transition: background 0.2s, border-color 0.2s;
     }
     .donate-btn:hover {
-      background: var(--orange);
-      color: #fff;
+      background: var(--brown);
+      border-color: var(--brown);
     }
 
     /* ── gallery ── */
@@ -370,25 +505,47 @@
 
     .gallery-heading {
       text-align: center;
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--teal);
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
       font-weight: 600;
-      margin-bottom: 1.4rem;
+      font-size: 1.7rem;
+      line-height: 1.2;
+      color: var(--teal-ink);
       padding: 0 1.5rem;
+    }
+
+    /* the cue that the strip scrolls, written as a stage direction */
+    .gallery-cue {
+      max-width: 34rem;
+      margin: 0.4rem auto 0.6rem;
+      padding: 0 1.5rem;
+      text-align: center;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+    /* wide enough to show all eight: nothing to swipe */
+    @media (min-width: 1900px) {
+      .cue-scroll { display: none; }
     }
 
     .gallery-strip {
       display: flex;
-      gap: 0.75rem;
+      gap: 1.1rem;
       overflow-x: auto;
       justify-content: safe center;
-      padding: 0.5rem 2rem 1.2rem;
-      scroll-snap-type: x mandatory;
+      padding: 1.5rem 2.5rem 1.7rem;
+      scroll-snap-type: x proximity;
+      scroll-padding-inline: 2.5rem;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
       scrollbar-color: var(--orange) var(--warm);
+      /* photos fade out at both edges, so it reads as a strip that keeps going */
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 2.25rem, #000 calc(100% - 2.25rem), transparent);
+      mask-image: linear-gradient(to right, transparent, #000 2.25rem, #000 calc(100% - 2.25rem), transparent);
     }
 
     .gallery-strip::-webkit-scrollbar {
@@ -403,20 +560,521 @@
       border-radius: 2px;
     }
 
-    .gallery-strip img {
+    /* each photo is a taped snapshot, like the ones in the archive, and a link to its large view */
+    .shot {
+      position: relative;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      transform: rotate(-1.6deg);
+      transition: transform 0.25s ease;
+      cursor: zoom-in;
+    }
+    .shot:nth-child(even) { transform: rotate(1.3deg); }
+    .shot:nth-child(3n) { transform: rotate(-0.5deg); }
+    .shot:hover, .shot:focus-visible { transform: rotate(0deg) scale(1.03); }
+    .shot::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: -10px; left: 50%;
+      width: 58px; height: 20px;
+      background: rgba(62,207,195,0.6);
+      transform: translateX(-50%) rotate(-5deg);
+    }
+    .shot:nth-child(even)::before {
+      background: rgba(240,160,48,0.72);
+      transform: translateX(-50%) rotate(4deg);
+    }
+    .shot img {
+      display: block;
       height: 280px;
       width: auto;
-      flex-shrink: 0;
-      border-radius: 10px;
-      object-fit: cover;
-      scroll-snap-align: start;
-      box-shadow: 0 4px 20px rgba(92,51,23,0.15);
-      transition: transform 0.2s, box-shadow 0.2s;
+      border: 5px solid #fff;
+      box-shadow: 3px 5px 0 rgba(92,51,23,0.2);
     }
 
-    .gallery-strip img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 32px rgba(92,51,23,0.25);
+    /* large view of one photo. No JS: each view is shown while its id is the page's #target.
+       The views and the close target are fixed to the window, so opening and closing
+       one does not move the page. */
+    .lightbox-rest {
+      position: fixed;
+      top: 3.75rem; left: 0;
+      width: 1px; height: 1px;
+      pointer-events: none;
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.5rem 1rem;
+      background: rgba(34,17,5,0.94);
+      color: var(--cream);
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+    }
+    .lightbox:target { display: flex; }
+    html:has(.lightbox:target) { overflow: hidden; scrollbar-gutter: stable; }
+    .lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+      cursor: zoom-out;
+    }
+    .lightbox figure {
+      position: relative;
+      transform: rotate(-1deg);
+      pointer-events: none;   /* a tap on the photo closes it too */
+    }
+    .lightbox figure::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: -14px; left: 50%;
+      width: 104px; height: 30px;
+      background: rgba(240,160,48,0.86);
+      transform: translateX(-50%) rotate(3deg);
+    }
+    .lightbox img {
+      display: block;
+      /* as large as the window allows, up to 640px tall; --ar is the photo's width / height */
+      width: min(100vw - 3rem, (100vh - 10.5rem) * var(--ar), 640px * var(--ar));
+      width: min(100vw - 3rem, (100dvh - 10.5rem) * var(--ar), 640px * var(--ar));
+      height: auto;
+      border: 8px solid #fff;
+      box-shadow: 6px 8px 0 rgba(0,0,0,0.5);
+    }
+    .lightbox-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 0.4rem;
+      font-size: 1.05rem;
+    }
+    .lightbox-bar a {
+      display: inline-block;
+      padding: 0.72rem 0.7rem;   /* 44px tall or more */
+      line-height: 1.3;
+      color: var(--cream);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .lightbox-bar a:hover { color: var(--orange2); text-decoration: underline; text-underline-offset: 0.2em; }
+    .lightbox-count { color: var(--warm); padding: 0 0.3rem; white-space: nowrap; }
+
+    /* ── archive: season one, written as a script ── */
+    .archive {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle, rgba(92,51,23,0.09) 1px, transparent 1.6px) 0 0 / 14px 14px,
+        var(--cream);
+      color: var(--ink);
+      padding: 4.5rem 1.5rem 5rem;
+    }
+
+    /* two overprinted ink discs, riso style */
+    .archive::before, .archive::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+    .archive::before {
+      width: 420px; height: 420px;
+      background: var(--teal2);
+      opacity: 0.3;
+      top: -120px; right: -100px;
+    }
+    .archive::after {
+      width: 290px; height: 290px;
+      background: var(--orange2);
+      opacity: 0.38;
+      top: 90px; right: 130px;
+    }
+
+    .archive-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 940px;
+      margin: 0 auto;
+    }
+
+    .archive-eyebrow {
+      color: var(--orange-ink);
+    }
+
+    .archive-title {
+      margin-top: 0.8rem;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: clamp(2.6rem, 8vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: var(--brown);
+    }
+    .archive-title em {
+      display: block;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--orange);
+      text-shadow: 0.05em 0.04em 0 rgba(46,173,163,0.75);
+    }
+
+    .archive-sub {
+      max-width: 34rem;
+      margin-top: 1.4rem;
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .archive-masthead {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.3rem 1.5rem;
+      margin-top: 2.2rem;
+      padding: 0.6rem 0;
+      border-top: 3px double var(--brown);
+      border-bottom: 3px double var(--brown);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* acts */
+    .act {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      margin-top: 3.5rem;
+    }
+
+    .act-mark {
+      position: sticky;
+      top: 1.5rem;
+    }
+
+    .act-num {
+      display: block;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 7.5rem;
+      line-height: 0.85;
+      /* tinted fill + spacing so II and III read as letters, not as a row of bars */
+      letter-spacing: 0.1em;
+      color: rgba(62,207,195,0.24);
+      -webkit-text-stroke: 2px var(--teal);
+    }
+    .act-num.amp { font-size: 6rem; line-height: 1.15; }
+
+    .act-label {
+      margin-top: 0.7rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--teal-ink);
+    }
+
+    .act-name {
+      margin-top: 0.2rem;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.7rem;
+      line-height: 1.1;
+      color: var(--brown);
+    }
+
+    /* scenes */
+    .scenes {
+      list-style: none;
+      display: grid;
+      gap: 2.4rem;
+    }
+
+    .scene {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* ticket stub: wrapper carries tilt + shadow, inner carries the notched shape */
+    .stub {
+      --stub: var(--orange2);
+      transform: rotate(-3deg);
+      filter: drop-shadow(3px 4px 0 rgba(92,51,23,0.2));
+      transition: transform 0.25s ease;
+    }
+    .stub.teal {
+      --stub: var(--teal2);
+      transform: rotate(2.5deg);
+    }
+    .scene:hover .stub { transform: rotate(0deg) scale(1.04); }
+
+    .stub-in {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.6rem 0.4rem 0.5rem;
+      background: var(--stub);
+      color: var(--text);
+      font-family: 'Baloo 2', cursive;
+      text-align: center;
+      -webkit-mask:
+        radial-gradient(circle 7px at left center, transparent 97%, #000) left / 51% 100% no-repeat,
+        radial-gradient(circle 7px at right center, transparent 97%, #000) right / 51% 100% no-repeat;
+      mask:
+        radial-gradient(circle 7px at left center, transparent 97%, #000) left / 51% 100% no-repeat,
+        radial-gradient(circle 7px at right center, transparent 97%, #000) right / 51% 100% no-repeat;
+    }
+    .stub-top, .stub-foot {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+    .stub-mid {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .stub-mid.sm { font-size: 1.45rem; line-height: 1.3; }
+    .stub-foot {
+      align-self: stretch;
+      margin-top: 0.3rem;
+      padding-top: 0.25rem;
+      border-top: 1.5px dashed rgba(58,31,8,0.5);
+    }
+
+    .scene-kind {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--orange-ink);
+    }
+
+    .scene-title {
+      margin-top: 0.15rem;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: clamp(1.45rem, 3.4vw, 1.9rem);
+      line-height: 1.1;
+      color: var(--brown);
+    }
+
+    .scene-place {
+      margin-top: 0.2rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    /* stage direction */
+    .scene-dir {
+      margin-top: 0.7rem;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: var(--teal-ink);
+    }
+
+    .scene-text {
+      max-width: 34rem;
+      margin-top: 0.5rem;
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+
+    .scene-link {
+      display: inline-block;
+      padding: 0.85rem 0;   /* 44px tap target */
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--orange-ink);
+    }
+
+    /* playbill credit lines with dotted leaders */
+    .bill {
+      list-style: none;
+      max-width: 23rem;
+      margin-top: 0.9rem;
+    }
+    .bill li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.15rem 0;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .bill li i {
+      flex: 1;
+      min-width: 1.5rem;
+      border-bottom: 2px dotted rgba(92,51,23,0.5);
+      transform: translateY(-0.25em);
+    }
+    .bill li span:first-child { font-weight: 400; }
+
+    /* taped-up poster */
+    .scene-poster {
+      position: relative;
+      float: right;
+      width: 118px;
+      margin: 0.2rem 0.4rem 0.8rem 1.4rem;
+      transform: rotate(3deg);
+    }
+    .scene-poster img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 5px solid #fff;
+      box-shadow: 3px 5px 0 rgba(92,51,23,0.2);
+    }
+    .scene-poster::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: -10px; left: 50%;
+      width: 58px; height: 20px;
+      background: rgba(62,207,195,0.6);
+      transform: translateX(-50%) rotate(-5deg);
+    }
+    /* snapshots: same tape, a little bigger, hung at different angles */
+    .scene-body { display: flow-root; }
+    .scene-poster.snap { width: 150px; }
+    .scene-poster.snap.wide { width: 184px; }
+    .scene-poster.tilt-l { transform: rotate(-2.5deg); }
+    .scene-poster.tilt-l::before { transform: translateX(-50%) rotate(4deg); }
+    .scene-poster.tape-o::before { background: rgba(240,160,48,0.72); }
+    .scene-poster figcaption {
+      margin-top: 0.45rem;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 0.75rem;
+      line-height: 1.3;
+      text-align: center;
+      color: var(--ink);
+    }
+
+    /* intermission */
+    .intermission {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-top: 3.5rem;
+      text-align: center;
+    }
+    .intermission::before, .intermission::after {
+      content: '';
+      flex: 1;
+      border-top: 3px double var(--brown);
+    }
+    .intermission-word {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: var(--orange-ink);
+    }
+    .intermission-note {
+      margin-top: 0.1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* curtain call */
+    .curtain-call {
+      margin-top: 4rem;
+      padding-top: 2.2rem;
+      border-top: 3px double var(--brown);
+      text-align: center;
+    }
+    .curtain-call .scene-dir { margin-top: 0; }
+    .cc-title {
+      margin-top: 0.5rem;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+      line-height: 1.1;
+      color: var(--brown);
+    }
+    .cc-text {
+      max-width: 28rem;
+      margin: 0.6rem auto 1.1rem;
+      line-height: 1.7;
+    }
+    .cc-top { margin-top: 0; }
+
+    @media (max-width: 760px) {
+      .archive { padding: 3.5rem 1.25rem 4rem; }
+      .archive::before { width: 300px; height: 300px; top: -110px; right: -120px; }
+      .archive::after { width: 200px; height: 200px; top: 40px; right: -60px; }
+      .act {
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
+        margin-top: 3rem;
+      }
+      .act-mark {
+        position: static;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 1rem;
+        align-items: end;
+        padding-bottom: 0.8rem;
+        border-bottom: 2px solid var(--teal);
+      }
+      .act-num, .act-num.amp { grid-row: span 2; font-size: 4.6rem; line-height: 0.95; }
+      .act-label { margin-top: 0; align-self: end; }
+      .act-name { align-self: start; font-size: 1.5rem; }
+      .scene { grid-template-columns: 70px 1fr; gap: 1.1rem; }
+      .stub-mid { font-size: 1.8rem; }
+      .stub-mid.sm { font-size: 1.2rem; }
+      .scene-poster { width: 92px; margin-left: 1rem; }
+      .scene-poster.snap { width: 112px; }
+      .scene-poster.snap.wide { width: 128px; }
+    }
+
+    /* too narrow to wrap a title around the poster: stand it above the scene instead */
+    @media (max-width: 520px) {
+      .scene-poster {
+        float: none;
+        display: block;
+        width: 112px;
+        margin: 0.4rem 0 1.1rem 0.3rem;
+      }
+      .scene-poster.snap { width: 150px; }
+      .scene-poster.snap.wide { width: 184px; }
+    }
+
+    /* scenes drift in as they enter the viewport (no JS; skipped where unsupported) */
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .scene {
+          animation: fadeUp linear both;
+          animation-timeline: view();
+          animation-range: entry 0% entry 40%;
+        }
+      }
     }
 
     /* ── footer ── */
@@ -425,6 +1083,10 @@
       color: rgba(255,255,255,0.7);
       text-align: center;
       padding: 2rem 1.5rem;
+    }
+    /* on a phone the back-to-top button would sit on the copyright line; give it room below */
+    @media (max-width: 700px) {
+      footer { padding-bottom: 5rem; }
     }
 
     .social-link {
@@ -435,16 +1097,18 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.9rem;
+      min-height: 2.75rem;   /* 44px tap target */
+      padding: 0 0.6rem;
       transition: color 0.2s;
     }
     .social-link:hover { color: #fff; }
     .social-link svg { width: 18px; height: 18px; fill: currentColor; }
 
     .copyright {
-      margin-top: 1rem;
-      font-size: 0.7rem;
+      margin-top: 0.25rem;
+      font-size: 0.75rem;
       letter-spacing: 0.1em;
-      opacity: 0.45;
+      opacity: 0.85;
     }
 
     @keyframes fadeUp {
@@ -479,108 +1143,324 @@
   </symbol>
 </svg>
 
-<div class="top-band"></div>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<section class="hero">
-  <img class="logo" src="logo.png" alt="Takes a Village LA" width="430" height="462" fetchpriority="high">
+<div class="top-band" id="top"></div>
+
+<nav class="site-nav" aria-label="On this page">
+  <ul>
+    <li><a href="#upcoming">What's next</a></li>
+    <li><a href="#constellations">Constellations</a></li>
+    <li><a href="#archive">The year so far</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <h1><span class="logo-frame"><img class="logo" src="logo.png" alt="Takes a Village LA" width="430" height="462" fetchpriority="high"></span></h1>
   <p class="tagline">Los Angeles &nbsp;·&nbsp; Nonprofit Theater</p>
-  <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram" style="margin-top:0.6rem">
+  <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram">
     <svg aria-hidden="true" focusable="false"><use href="#ig-icon"/></svg>
     @takes.a.village.la
   </a>
   <a class="donate-btn" href="https://venmo.com/Takes-a-village1" target="_blank" rel="noopener">Donate via Venmo</a>
-</section>
+</header>
+
+<main id="main" tabindex="-1">
 
 <!-- wave transition -->
 <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
   <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 Z" fill="#fde8c0"/>
-  <path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="#2EADA3"/>
+  <path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="#176F67"/>
 </svg>
 
 <section class="intro">
   <h2>Hello, Friends!</h2>
   <p>
-    We're Takes a Village, a new Los Angeles nonprofit theater company. We started where the village itself began — alongside you, in our backyard — with our first production, <em>Constellations</em>, this spring. We have many more goals and plans as we bring this vision to life, and we can't wait to share what's next.
+    We're Takes a Village, a Los Angeles nonprofit theater company. We started where the village itself began, alongside you, in our backyard, with our first production, <em>Constellations</em>. We have many more goals and plans as we bring this vision to life, and we can't wait to share what's next.
   </p>
 </section>
 
 <!-- wave: teal → cream -->
 <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
   <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#FFF6E8"/>
-  <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#2EADA3"/>
+  <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#176F67"/>
 </svg>
 
-<section class="upcoming-section">
+<section class="upcoming-section" id="upcoming">
   <p class="upcoming-eyebrow">What's Next</p>
   <h2 class="upcoming-heading">Upcoming Events</h2>
   <p class="upcoming-placeholder">Our next production is in the works. Follow us on Instagram and check back here for announcements.</p>
-  <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram" style="margin-top:1.2rem">
+  <p class="upcoming-more"><a class="scene-link" href="#archive">In the meantime, see the year so far &darr;</a></p>
+  <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram">
     <svg aria-hidden="true" focusable="false"><use href="#ig-icon"/></svg>
     @takes.a.village.la
   </a>
 </section>
 
-<!-- wave: cream → dark -->
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-  <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 Z" fill="#FFF6E8"/>
-  <path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="#0d0d1a"/>
-</svg>
-
-<section class="show-section">
+<section class="show-section" id="constellations" aria-labelledby="constellations-title">
   <p class="show-eyebrow">Past Production</p>
   <div class="show-inner">
-    <img class="flier-img" src="flier.jpg" alt="Constellations — Takes a Village LA" width="926" height="1158" loading="lazy" decoding="async">
+    <div class="flier-frame"><img class="flier-img" src="flier.jpg" alt="Constellations — Takes a Village LA" width="926" height="1158" loading="lazy" decoding="async"></div>
     <div class="show-info">
-      <p class="show-title">Constellations</p>
+      <h2 class="show-title" id="constellations-title">Constellations</h2>
       <p class="show-presented">Takes a Village &nbsp;·&nbsp; An Intimate Backyard Performance</p>
-      <p class="show-desc">A story about love, physics, and how we try to connect — performed live, up close, right where the village began. We hope you will join us for theater, cocktails, and an intimate evening of connection and shared experience at The Village. ❤️</p>
+      <p class="show-desc">A story about love, physics, and how we try to connect, performed live and up close, right where the village began. Our first production filled the backyard with theater, cocktails, and evenings of connection and shared experience. Thank you to everyone who joined us at The Village.</p>
 
-      <p class="dates-label">Performances</p>
-      <div class="dates">
-        <div class="date-item past">Friday, May 8<span>Week One</span></div>
-        <div class="date-item past">Friday, May 15<span>Week Two</span></div>
-        <div class="date-item past">Saturday, May 9<span>Week One</span></div>
-        <div class="date-item past">Saturday, May 16<span>Week Two</span></div>
-        <div class="date-item past">Sunday, May 10<span>Week One</span></div>
-        <div class="date-item past">Sunday, May 17<span>Week Two</span></div>
-        <div class="date-item past">Saturday, May 23<span>Added Performance</span></div>
-      </div>
+      <p class="show-run">May 8–23, 2026<span>Seven performances</span></p>
 
-      <div class="venue">
-        <strong>The Village</strong> &nbsp;·&nbsp; Van Nuys, CA<br>
-        15147 Hamlin Street
-      </div>
+      <p class="venue"><strong>The Village</strong> &nbsp;·&nbsp; Van Nuys, CA</p>
 
       <p class="credits">Directed by Jose Chavarry &nbsp;·&nbsp; Produced by Molly Jackson</p>
     </div>
   </div>
 </section>
 
-<!-- wave: dark → warm gallery -->
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-  <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#FDE8C0"/>
-  <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#0d0d1a"/>
-</svg>
-
-<section class="gallery-section">
-  <p class="gallery-heading">Opening Night</p>
+<section class="gallery-section" aria-labelledby="opening-night-title">
+  <h3 class="gallery-heading" id="opening-night-title">Opening Night</h3>
+  <p class="gallery-cue">[Eight photographs from the night.<span class="cue-scroll"> Swipe sideways for more.</span> Tap or click one to see it larger.]</p>
+  <span class="lightbox-rest" id="photos"></span>
   <div class="gallery-strip">
-    <img src="gallery/gallery (1).jpg" alt="Constellations opening night photo 1" width="384" height="512" loading="lazy" decoding="async">
-    <img src="gallery/gallery (2).jpg" alt="Constellations opening night photo 2" width="236" height="512" loading="lazy" decoding="async">
-    <img src="gallery/gallery (3).jpg" alt="Constellations opening night photo 3" width="384" height="512" loading="lazy" decoding="async">
-    <img src="gallery/gallery (4).jpg" alt="Constellations opening night photo 4" width="384" height="512" loading="lazy" decoding="async">
-    <img src="gallery/gallery (5).jpg" alt="Constellations opening night photo 5" width="384" height="512" loading="lazy" decoding="async">
-    <img src="gallery/gallery (6).jpg" alt="Constellations opening night photo 6" width="384" height="512" loading="lazy" decoding="async">
-    <img src="gallery/gallery (7).jpg" alt="Constellations opening night photo 7" width="384" height="512" loading="lazy" decoding="async">
-    <img src="gallery/gallery (8).jpg" alt="Constellations opening night photo 8" width="341" height="512" loading="lazy" decoding="async">
+    <a class="shot" href="#photo-1"><img src="gallery/gallery (1).jpg" alt="A child stands on the low wooden stage in the backyard at dusk, arms flung wide, facing the mosaic on the back wall." width="384" height="512" loading="lazy" decoding="async"></a>
+    <a class="shot" href="#photo-2"><img src="gallery/gallery (2).jpg" alt="An Instagram story of the empty stage after the show, with the words: Well, that was a beautiful night of theatre! Congrats to the cast." width="236" height="512" loading="lazy" decoding="async"></a>
+    <a class="shot" href="#photo-3"><img src="gallery/gallery (3).jpg" alt="After dark, the audience sits in white folding chairs under a big tree, watching the two actors in a pool of warm light by the doorway." width="384" height="512" loading="lazy" decoding="async"></a>
+    <a class="shot" href="#photo-4"><img src="gallery/gallery (4).jpg" alt="The two actors face each other on stage under blue light, seen over the heads of a full house in folding chairs." width="384" height="512" loading="lazy" decoding="async"></a>
+    <a class="shot" href="#photo-5"><img src="gallery/gallery (5).jpg" alt="The two actors lean close in the warm light of the doorway while the audience watches from the lawn." width="384" height="512" loading="lazy" decoding="async"></a>
+    <a class="shot" href="#photo-6"><img src="gallery/gallery (6).jpg" alt="At dusk, two people sit side by side on the stage in front of the mosaic wall, string lights overhead, facing a full backyard." width="384" height="512" loading="lazy" decoding="async"></a>
+    <a class="shot" href="#photo-7"><img src="gallery/gallery (7).jpg" alt="A hand holds up the playbill: Constellations by Nick Payne, with Johanna Auxais and Ray Auxais, a Takes a Village production." width="384" height="512" loading="lazy" decoding="async"></a>
+    <a class="shot" href="#photo-8"><img src="gallery/gallery (8).jpg" alt="Two performers in silhouette, face to face against a white screen, their bodies filled with projected blues, greens and reds." width="341" height="512" loading="lazy" decoding="async"></a>
+  </div>
+
+  <!-- large views, one per photo; shown by the :target rule on .lightbox -->
+  <div class="lightbox" id="photo-1" style="--ar:0.75">
+    <a class="lightbox-backdrop" href="#photos" aria-label="Close the photo"></a>
+    <figure><img src="gallery/gallery (1).jpg" alt="A child stands on the low wooden stage in the backyard at dusk, arms flung wide, facing the mosaic on the back wall." width="384" height="512" loading="lazy" decoding="async"></figure>
+    <p class="lightbox-bar"><a href="#photo-8" aria-label="Previous photo">&larr; Previous</a><span class="lightbox-count">1 of 8</span><a href="#photo-2" aria-label="Next photo">Next &rarr;</a><a href="#photos">Close</a></p>
+  </div>
+  <div class="lightbox" id="photo-2" style="--ar:0.4609">
+    <a class="lightbox-backdrop" href="#photos" aria-label="Close the photo"></a>
+    <figure><img src="gallery/gallery (2).jpg" alt="An Instagram story of the empty stage after the show, with the words: Well, that was a beautiful night of theatre! Congrats to the cast." width="236" height="512" loading="lazy" decoding="async"></figure>
+    <p class="lightbox-bar"><a href="#photo-1" aria-label="Previous photo">&larr; Previous</a><span class="lightbox-count">2 of 8</span><a href="#photo-3" aria-label="Next photo">Next &rarr;</a><a href="#photos">Close</a></p>
+  </div>
+  <div class="lightbox" id="photo-3" style="--ar:0.75">
+    <a class="lightbox-backdrop" href="#photos" aria-label="Close the photo"></a>
+    <figure><img src="gallery/gallery (3).jpg" alt="After dark, the audience sits in white folding chairs under a big tree, watching the two actors in a pool of warm light by the doorway." width="384" height="512" loading="lazy" decoding="async"></figure>
+    <p class="lightbox-bar"><a href="#photo-2" aria-label="Previous photo">&larr; Previous</a><span class="lightbox-count">3 of 8</span><a href="#photo-4" aria-label="Next photo">Next &rarr;</a><a href="#photos">Close</a></p>
+  </div>
+  <div class="lightbox" id="photo-4" style="--ar:0.75">
+    <a class="lightbox-backdrop" href="#photos" aria-label="Close the photo"></a>
+    <figure><img src="gallery/gallery (4).jpg" alt="The two actors face each other on stage under blue light, seen over the heads of a full house in folding chairs." width="384" height="512" loading="lazy" decoding="async"></figure>
+    <p class="lightbox-bar"><a href="#photo-3" aria-label="Previous photo">&larr; Previous</a><span class="lightbox-count">4 of 8</span><a href="#photo-5" aria-label="Next photo">Next &rarr;</a><a href="#photos">Close</a></p>
+  </div>
+  <div class="lightbox" id="photo-5" style="--ar:0.75">
+    <a class="lightbox-backdrop" href="#photos" aria-label="Close the photo"></a>
+    <figure><img src="gallery/gallery (5).jpg" alt="The two actors lean close in the warm light of the doorway while the audience watches from the lawn." width="384" height="512" loading="lazy" decoding="async"></figure>
+    <p class="lightbox-bar"><a href="#photo-4" aria-label="Previous photo">&larr; Previous</a><span class="lightbox-count">5 of 8</span><a href="#photo-6" aria-label="Next photo">Next &rarr;</a><a href="#photos">Close</a></p>
+  </div>
+  <div class="lightbox" id="photo-6" style="--ar:0.75">
+    <a class="lightbox-backdrop" href="#photos" aria-label="Close the photo"></a>
+    <figure><img src="gallery/gallery (6).jpg" alt="At dusk, two people sit side by side on the stage in front of the mosaic wall, string lights overhead, facing a full backyard." width="384" height="512" loading="lazy" decoding="async"></figure>
+    <p class="lightbox-bar"><a href="#photo-5" aria-label="Previous photo">&larr; Previous</a><span class="lightbox-count">6 of 8</span><a href="#photo-7" aria-label="Next photo">Next &rarr;</a><a href="#photos">Close</a></p>
+  </div>
+  <div class="lightbox" id="photo-7" style="--ar:0.75">
+    <a class="lightbox-backdrop" href="#photos" aria-label="Close the photo"></a>
+    <figure><img src="gallery/gallery (7).jpg" alt="A hand holds up the playbill: Constellations by Nick Payne, with Johanna Auxais and Ray Auxais, a Takes a Village production." width="384" height="512" loading="lazy" decoding="async"></figure>
+    <p class="lightbox-bar"><a href="#photo-6" aria-label="Previous photo">&larr; Previous</a><span class="lightbox-count">7 of 8</span><a href="#photo-8" aria-label="Next photo">Next &rarr;</a><a href="#photos">Close</a></p>
+  </div>
+  <div class="lightbox" id="photo-8" style="--ar:0.666">
+    <a class="lightbox-backdrop" href="#photos" aria-label="Close the photo"></a>
+    <figure><img src="gallery/gallery (8).jpg" alt="Two performers in silhouette, face to face against a white screen, their bodies filled with projected blues, greens and reds." width="341" height="512" loading="lazy" decoding="async"></figure>
+    <p class="lightbox-bar"><a href="#photo-7" aria-label="Previous photo">&larr; Previous</a><span class="lightbox-count">8 of 8</span><a href="#photo-1" aria-label="Next photo">Next &rarr;</a><a href="#photos">Close</a></p>
   </div>
 </section>
 
-<!-- wave: warm → brown footer -->
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-  <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#5C3317"/>
-  <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#FDE8C0"/>
-</svg>
+<section class="archive" id="archive" aria-labelledby="archive-title">
+  <div class="archive-inner">
+
+    <p class="archive-eyebrow">The Archive &nbsp;·&nbsp; Season One</p>
+    <h2 class="archive-title" id="archive-title">A Year in <em>Three Acts</em></h2>
+    <p class="archive-sub">Everything we've made together since the village began, written down the way theater people keep their memories: as a script.</p>
+    <p class="archive-masthead"><span>Vol. 1</span><span>Winter – Fall 2026</span><span>Eight Scenes</span><span>Admit All</span></p>
+
+    <!-- prologue -->
+    <div class="act">
+      <div class="act-mark">
+        <span class="act-num amp" aria-hidden="true">&amp;</span>
+        <p class="act-label">Before the Curtain</p>
+        <h3 class="act-name">Prologue</h3>
+      </div>
+      <ol class="scenes">
+        <li class="scene">
+          <div class="stub"><div class="stub-in"><span class="stub-top">Jan</span><span class="stub-mid">19</span><span class="stub-foot">2026</span></div></div>
+          <div class="scene-body">
+            <figure class="scene-poster snap tilt-l tape-o">
+              <img src="archive/lacma.jpg" alt="Four of us, two grown-ups and two kids, in matching Arts &amp; Healing Initiative shirts beside our drums on the LACMA plaza." width="360" height="428" loading="lazy" decoding="async">
+            </figure>
+            <p class="scene-kind">Drum Circle</p>
+            <h4 class="scene-title">Family Day at LACMA</h4>
+            <p class="scene-place">Los Angeles County Museum of Art</p>
+            <p class="scene-dir">[Enter four hundred strangers. The Los Angeles skyline plays the backdrop.]</p>
+            <p class="scene-text">Invited to represent multigenerational artistry, our family, kids included, led a community drum circle for some four hundred people of all ages.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- act one -->
+    <div class="act">
+      <div class="act-mark">
+        <span class="act-num" aria-hidden="true">I</span>
+        <p class="act-label">Act One &nbsp;·&nbsp; Spring</p>
+        <h3 class="act-name">The Village Begins</h3>
+      </div>
+      <ol class="scenes">
+        <li class="scene">
+          <div class="stub teal"><div class="stub-in"><span class="stub-top">Apr</span><span class="stub-mid">21</span><span class="stub-foot">2026</span></div></div>
+          <div class="scene-body">
+            <p class="scene-kind">Scene 1 &nbsp;·&nbsp; Founding</p>
+            <h4 class="scene-title">Hello, Friends!</h4>
+            <p class="scene-place">The Village &nbsp;·&nbsp; Van Nuys</p>
+            <p class="scene-dir">[A backyard in Van Nuys. Lights up.]</p>
+            <p class="scene-text">Takes a Village launches as a nonprofit with one promise to start: stage a play we had always wanted to do together, right where the village itself began.</p>
+          </div>
+        </li>
+        <li class="scene">
+          <div class="stub"><div class="stub-in"><span class="stub-top">May</span><span class="stub-mid sm">8–23</span><span class="stub-foot">2026</span></div></div>
+          <div class="scene-body">
+            <a class="scene-poster" href="#constellations" aria-label="Constellations poster, jump to the production">
+              <img src="flier.jpg" alt="" width="926" height="1158" loading="lazy" decoding="async">
+            </a>
+            <p class="scene-kind">Scene 2 &nbsp;·&nbsp; First Production</p>
+            <h4 class="scene-title">Constellations</h4>
+            <p class="scene-place">The Village &nbsp;·&nbsp; Van Nuys</p>
+            <p class="scene-dir">[The backyard becomes a theater.]</p>
+            <p class="scene-text">A story about love, physics, and how we try to connect, played up close with cocktails and conversation. One last performance was added on May 23, with a party after.</p>
+            <ul class="bill">
+              <li><span>Directed by</span><i aria-hidden="true"></i><span>Jose Chavarry</span></li>
+              <li><span>Produced by</span><i aria-hidden="true"></i><span>Molly Jackson</span></li>
+            </ul>
+            <a class="scene-link" href="#constellations">See the production &uarr;</a>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="intermission">
+      <div>
+        <p class="intermission-word">Intermission</p>
+        <p class="intermission-note">House lights up</p>
+      </div>
+    </div>
+
+    <!-- act two -->
+    <div class="act">
+      <div class="act-mark">
+        <span class="act-num" aria-hidden="true">II</span>
+        <p class="act-label">Act Two &nbsp;·&nbsp; Summer</p>
+        <h3 class="act-name">The Village Travels</h3>
+      </div>
+      <ol class="scenes">
+        <li class="scene">
+          <div class="stub teal"><div class="stub-in"><span class="stub-top">Summer</span><span class="stub-mid sm">July</span><span class="stub-foot">2026</span></div></div>
+          <div class="scene-body">
+            <figure class="scene-poster snap tilt-l">
+              <img src="archive/special-camp.jpg" alt="A drum circle mid-song: campers in red Special Camp shirts sit at their drums while two dancers cross the floor." width="360" height="360" loading="lazy" decoding="async">
+            </figure>
+            <p class="scene-kind">Scene 1 &nbsp;·&nbsp; Drumming</p>
+            <h4 class="scene-title">Special Camp Joins the Village</h4>
+            <p class="scene-place">With Special Camp</p>
+            <p class="scene-dir">[Enter the campers, each with a rhythm of their own.]</p>
+            <p class="scene-text">We had the privilege of making music with students with special needs, a room full of creativity and joyful expression. Some days you feel like you are living your purpose. This was one of them.</p>
+          </div>
+        </li>
+        <li class="scene">
+          <div class="stub"><div class="stub-in"><span class="stub-top">Summer</span><span class="stub-mid sm">Aug</span><span class="stub-foot">2026</span></div></div>
+          <div class="scene-body">
+            <figure class="scene-poster snap wide tape-o">
+              <img src="archive/csun.jpg" alt="Three people seated on a stage, each with a hand drum, the one in the middle talking with her hands." width="360" height="266" loading="lazy" decoding="async">
+            </figure>
+            <p class="scene-kind">Scene 2 &nbsp;·&nbsp; Teacher Workshop</p>
+            <h4 class="scene-title">Arts in Education at CSUN</h4>
+            <p class="scene-place">California State University, Northridge</p>
+            <p class="scene-dir">[A room full of teachers. Each one is handed a drum.]</p>
+            <p class="scene-text">A professional development day on the power of the arts in the classroom. Our session used drumming to teach leadership, teamwork, self-expression, and the confidence to take positive risks.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- act three -->
+    <div class="act">
+      <div class="act-mark">
+        <span class="act-num" aria-hidden="true">III</span>
+        <p class="act-label">Act Three &nbsp;·&nbsp; Fall</p>
+        <h3 class="act-name">The Turning Season</h3>
+      </div>
+      <ol class="scenes">
+        <li class="scene">
+          <div class="stub teal"><div class="stub-in"><span class="stub-top">Monthly</span><span class="stub-mid sm">Fall</span><span class="stub-foot">2026</span></div></div>
+          <div class="scene-body">
+            <figure class="scene-poster snap tilt-l tape-o">
+              <img src="archive/note-to-self.jpg" alt="A table at Golden Hour Studio crowded with candles, jewelry, little pumpkins and handmade gifts." width="360" height="480" loading="lazy" decoding="async">
+              <figcaption>Photo: Golden Hour Studio</figcaption>
+            </figure>
+            <p class="scene-kind">Scene 1 &nbsp;·&nbsp; Art &amp; Journaling Club</p>
+            <h4 class="scene-title">Note to Self</h4>
+            <p class="scene-place">With Golden Hour Studio &nbsp;·&nbsp; El Sereno</p>
+            <p class="scene-dir">[The season turns. Pens out.]</p>
+            <p class="scene-text">An evening of guided prompts, reflection, and art made in community, returning each month with a new theme.</p>
+            <ul class="bill">
+              <li><span>Fall Equinox</span><i aria-hidden="true"></i><span>Sept 22</span></li>
+              <li><span>Magic &amp; Spells</span><i aria-hidden="true"></i><span>Oct 21</span></li>
+            </ul>
+          </div>
+        </li>
+        <li class="scene">
+          <div class="stub"><div class="stub-in"><span class="stub-top">Oct</span><span class="stub-mid">26</span><span class="stub-foot">2026</span></div></div>
+          <div class="scene-body">
+            <figure class="scene-poster snap">
+              <img src="archive/full-moon.jpg" alt="Two people, one in a witch&#39;s hat, under strings of colored lights in the backyard at The Village at night." width="360" height="480" loading="lazy" decoding="async">
+            </figure>
+            <p class="scene-kind">Scene 2 &nbsp;·&nbsp; Gathering</p>
+            <h4 class="scene-title">Full Moon at The Village</h4>
+            <p class="scene-place">The Village &nbsp;·&nbsp; Van Nuys</p>
+            <p class="scene-dir">[Enter fifty witches. The Village glows.]</p>
+            <p class="scene-text">We celebrated the full moon with about fifty witches, and the backyard lit up with an abundance of energy. Thank you to every Villager who blessed us with their presence.</p>
+          </div>
+        </li>
+        <li class="scene">
+          <div class="stub teal"><div class="stub-in"><span class="stub-top">Nov</span><span class="stub-mid">22</span><span class="stub-foot">2026</span></div></div>
+          <div class="scene-body">
+            <figure class="scene-poster tilt-l tape-o">
+              <img src="archive/unmasked.jpg" alt="Poster for Unmasked: The Actor&#39;s Journey, a hand lifting a golden mask beside a red curtain." width="360" height="360" loading="lazy" decoding="async">
+            </figure>
+            <p class="scene-kind">Scene 3 &nbsp;·&nbsp; Acting Workshop</p>
+            <h4 class="scene-title">Unmasked: The Actor's Journey</h4>
+            <p class="scene-place">Casa 0101 &nbsp;·&nbsp; Boyle Heights</p>
+            <p class="scene-dir">[Strip away the performance. Find the truth.]</p>
+            <p class="scene-text">A workshop to open a company's very first rehearsal. Working with kids is fun. Working with big kids gets deep.</p>
+            <ul class="bill">
+              <li><span>Instructor</span><i aria-hidden="true"></i><span>Ray Auxais</span></li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="curtain-call">
+      <p class="scene-dir">[Exeunt, pursued by a drum circle.]</p>
+      <p class="cc-title">End of Season One</p>
+      <p class="cc-text">Season Two is still being written. Catch the next scene as it happens.</p>
+      <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram">
+        <svg aria-hidden="true" focusable="false"><use href="#ig-icon"/></svg>
+        @takes.a.village.la
+      </a>
+      <p class="cc-top"><a class="scene-link" href="#top">Back to the top &uarr;</a></p>
+    </div>
+
+  </div>
+</section>
+
+</main>
 
 <footer>
   <a class="social-link" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram">
@@ -589,6 +1469,12 @@
   </a>
   <p class="copyright">&copy; 2026 Takes a Village LA &nbsp;·&nbsp; Nonprofit Organization</p>
 </footer>
+
+<div class="to-top-track">
+  <a class="to-top" href="#top" aria-label="Back to the top" title="Back to the top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+</div>
 
 </body>
 </html>
