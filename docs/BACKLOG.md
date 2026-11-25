@@ -52,7 +52,7 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 | B19 | Larger gallery originals (the current ones are 512px tall, so the large view is soft) | Follow-ups | S | 1 | blocked: needs larger original photos from Nick |
 | B20 | Final `/polish` pass over the home page and `missing.html` as they stand | Critique 2, step 6 | M | 1 | done 2026-11-25 (done directly, as B4 was, not with workers). `.archive` is `overflow: clip` (hidden as fallback) so the act marks finally stick, at 4.5rem to clear the menu; Nunito 700, never loaded, set to 600 everywhere; focus ring is `--orange-ink`, cream on the teal intro, orange2 in the footer and large views; the logo pop-in eases out instead of bouncing; the gallery cue hides from 1400px (the strip fits there) instead of 1900px; `missing.html` gets the apple-touch-icon. `site.js` now moves keyboard focus into a large view (Close, or the same Previous/Next when stepping) and back to its photo or poster on close or Escape. `site.css?v=7`, `site.js?v=2`; no new files. Checked at 1280x900 and 390x844 on both pages: no overflow, no console errors, contrast script no fails or missing rows. Deploy run 45572719395 succeeded. Left as is: the skip link is 40px tall and the not-found home button 43px. |
 | B21 | `/polish` pass over `offerings.html` once it is built | Split of B20 | S | 1 | blocked: needs B5c and B5d |
-| B22 | Typographic apostrophes and quotes in the copy ("isn't", "Actor's", "We're" use straight `'`), in the HTML and in any checks that match text | B20 polish pass | S | 1 | todo |
+| B22 | Typographic apostrophes and quotes in the copy ("isn't", "Actor's", "We're" use straight `'`), in the HTML and in any checks that match text | B20 polish pass | S | 1 | done 2026-11-25. Fourteen straight apostrophes and `&#39;` entities in visible text and alt text (12 in `index.html`, 2 in `missing.html`) are now `’` (U+2019); the copy has no quotation marks, so none needed curling. Attribute delimiters, CSS, JS, URLs, meta tags and comments untouched; no check matched this text, so `docs/measure-contrast.js` is unchanged. UTF-8 without BOM, no `?v=` bump (no CSS or JS change). Checked at 1280 and 390 on both pages: no overflow, no fails or missing rows. Deploy run 45573375399 succeeded; live pages serve `’`. |
 
 ## Offerings page
 
@@ -110,6 +110,7 @@ Then B5c builds the page, with `put offerings.html` and a `put` per photo in the
 - `site.css` is at `?v=7` after B20 (both `index.html` and `missing.html` link it; bump both). `site.js` is at `?v=2` (B18, B20; `index.html` only); bump it when it changes. `.archive` must stay `overflow: clip`, not `hidden`, or the sticky act marks stop sticking. A new large view needs no JS change if it uses the `.lightbox` markup and its opener has class `shot` or `poster-open`. Large views (`.lightbox`) take an optional `--cap` (max height, default 640px) for images smaller than the gallery's.
 - `gallery/gallery (4).jpg` and `(5).jpg` are no longer on the page (B8). Nick may delete them from
   the repo and the server; a session should not.
+- Since B22 the copy uses curly apostrophes (`’`, U+2019); new text should too, not `'` or `&#39;`.
 - Since B16, `docs/measure-contrast.js` measures a short row list on `missing.html` (it detects `.lost`) and the full list on the home page.
 
 ## Decided with Nick, 2026-11-25
