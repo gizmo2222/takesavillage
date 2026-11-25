@@ -21,10 +21,10 @@ jobs:
           sshpass -e sftp -o UserKnownHostsFile=.github/known_hosts -o StrictHostKeyChecking=yes \
             ${{ secrets.SFTP_USER }}@takesavillage.la <<'SFTP'
           put site.css /home/takesavillage/takesavillage.la/site.css
+          put constellations-flier.jpg /home/takesavillage/takesavillage.la/constellations-flier.jpg
           put index.html /home/takesavillage/takesavillage.la/index.html
           put logo.png /home/takesavillage/takesavillage.la/logo.png
           put favicon.svg /home/takesavillage/takesavillage.la/favicon.svg
-          put flier.jpg /home/takesavillage/takesavillage.la/flier.jpg
           -mkdir /home/takesavillage/takesavillage.la/gallery
           put "gallery/gallery (1).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (1).jpg"
           put "gallery/gallery (2).jpg" "/home/takesavillage/takesavillage.la/gallery/gallery (2).jpg"
