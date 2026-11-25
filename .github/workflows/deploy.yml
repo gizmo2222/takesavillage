@@ -21,6 +21,7 @@ jobs:
           sshpass -e sftp -o UserKnownHostsFile=.github/known_hosts -o StrictHostKeyChecking=yes \
             ${{ secrets.SFTP_USER }}@takesavillage.la <<'SFTP'
           put site.css /home/takesavillage/takesavillage.la/site.css
+          put site.js /home/takesavillage/takesavillage.la/site.js
           put constellations-flier.jpg /home/takesavillage/takesavillage.la/constellations-flier.jpg
           put index.html /home/takesavillage/takesavillage.la/index.html
           put missing.html /home/takesavillage/takesavillage.la/missing.html
