@@ -3,16 +3,15 @@
 Design critique of `index.html` (whole page, including the new archive section), measured at
 1280x900 and 390x844. `docs/` is not in the deploy list.
 
-**Status: the fix round, the sticky menu with a back-to-top button, and Round 2 (all eight items)
-are done, committed (`7017120`) and pushed, so they are live.** `flier.jpg` is the copy with the
-dates and the street address removed (Nick said yes on 2026-11-23; see Round 2, item 1).
-A second critique ran on 2026-11-24: see "Critique 2" at the end for its score, issues,
-Nick's decisions and the next steps. Step 1 of Critique 2 is built (2026-11-24), uncommitted;
-steps 2 to 6 are not started.
+**Status (2026-11-25): everything below is committed and live.** The fix round, the sticky
+menu, Round 2 and Critique 2's steps 1 to 4 are published. What is left, and its order, is in
+`docs/BACKLOG.md`; this file stays the record of why each item exists. The flier with the dates
+and the street address removed is now `constellations-flier.jpg` (renamed from `flier.jpg` by
+backlog row B9 so cached copies are not reused).
 
-## State of the working tree
+## State of the working tree on 2026-11-23 (all since committed)
 
-Published in `7017120`. Uncommitted since: this file, and Critique 2 step 1 in `index.html`,
+Published in `7017120`. Uncommitted at the time, all committed since: this file, and Critique 2 step 1 in `index.html`,
 `README.md` and `docs/measure-contrast.js` (see "Step 1, done" at the end).
 
 - `index.html`: new `<section class="archive" id="archive">` ("A Year in Three Acts"), six taped
@@ -64,7 +63,7 @@ Nielsen heuristics: 22 / 40 (scored before the fix round; not re-scored).
 | 9 | Error recovery (little applies to a static page) | 2 |
 | 10 | Help and documentation | 1 |
 
-## Fix round (all three approved by Nick): DONE 2026-11-23, uncommitted
+## Fix round (all three approved by Nick): DONE 2026-11-23, live
 
 Checked in the browser at 1280x900 and 390x844: no horizontal overflow at either width
 (scroll width equals client width, no element pokes past the viewport), every contrast row passes.
@@ -126,7 +125,7 @@ in the SVGs; change all three together).
 - "Back to the top" link in the archive's curtain call.
 - "Hello, Friends!" is used twice (intro H2 and an archive H4). Nick decided to keep both.
 
-## Sticky menu and back-to-top button (asked for by Nick): DONE 2026-11-23, uncommitted
+## Sticky menu and back-to-top button (asked for by Nick): DONE 2026-11-23, live
 
 Checked at 1280x900 and 390x844: no horizontal overflow at either width.
 
@@ -150,7 +149,7 @@ Checked at 1280x900 and 390x844: no horizontal overflow at either width.
 - Browser cache: after editing, open `http://127.0.0.1:8123/index.html` or hard-reload; a plain
   reload of `/` served a stale copy once.
 
-## Round 2 (approved by Nick): DONE 2026-11-23, uncommitted
+## Round 2 (approved by Nick): DONE 2026-11-23, live
 
 Checked in the browser at 1280x900 and 390x844: no horizontal overflow at either width (scroll
 width equals client width, 1265 and 390; no element pokes past the viewport), the menu stays on
@@ -227,54 +226,58 @@ phone.
 ### Measured contrast
 
 `docs/measure-contrast.js`, run after finishing the page's animations, `fails` empty at both
-widths. 4.5 is the minimum for body text, 3 for large text. Where the widths differ, both are
-shown.
+widths. Remeasured 2026-11-25 (backlog B11) on the page as it now stands: the show section is on
+paper, so its rows no longer read against navy. 4.5 is the minimum for body text, 3 for large
+text. Where the widths differ, both are shown, 1280 first.
 
-| Text | Size | Ratio |
-|------|------|-------|
-| Menu link | | 12.42 |
-| Back-to-top arrow | | 10.1 |
-| Hero tagline | 12px | 5.15 desktop, 4.78 phone |
-| Hero Instagram link | | 5.09 desktop, 4.73 phone |
-| Donate text | | 5.02 |
-| Intro heading | | 5.59 |
-| Intro paragraph | | 5.99 |
-| "What's Next" eyebrow | 18.4px | 4.69 |
-| Upcoming placeholder | | 12.23 |
-| "see the year so far" link | | 4.69 |
-| Upcoming Instagram link | | 5.59 |
-| "Past Production" eyebrow | 18.4px | 10.02 |
-| `.show-presented` | 12px | 9.58 |
-| Run line | | 16.04 |
-| Run sub-label | | 10.02 |
-| Show blurb | | 9.58 |
-| Venue | | 6.24 |
-| Credits | | 5.33 |
-| "Opening Night" heading | 27.2px | 4.99 (large, needs 3) |
-| Gallery cue line | 16px | 10.91 |
-| Photo view links | 16.8px | 14.72 |
-| Photo view count | | 13.13 |
-| Archive eyebrow | 18.4px | 4.69 |
-| Archive masthead | 12px | 12.23 |
-| Act label | 12px | 5.59 |
-| Stub top and foot, orange stub | 12px | 7.09 |
-| Stub top and foot, teal stub | 12px | 7.91 |
-| Scene kind | 12px | 4.69 |
-| Archive stage direction | | 5.59 |
-| "See the production" link | | 4.69 |
-| Intermission note | 12px | 12.23 |
-| Archive Instagram link | | 5.59 |
-| "Back to the top" | | 4.69 |
-| Footer Instagram link | | 5.04 |
-| Copyright line | 12px | 4.95 (was about 2.46) |
+| Text | Size, 1280 / 390 | Ratio | Needs |
+|---|---|---|---|
+| Menu link | 16.3 / 15.2px | 12.42 | 4.5 |
+| Back-to-top button arrow | 16px | 10.1 | 4.5 |
+| Hero tagline | 16 / 12.8px | 5.21 / 5.22 | 4.5 |
+| Hero sentence (what the company does) | 23.2 / 19.2px | 11.21 / 10.41 | 4.5 |
+| Hero Instagram link | 13.6px | 5.08 / 4.72 | 4.5 |
+| Donate button text | 13.6px | 5.02 | 4.5 |
+| Intro heading | 41.6 / 28.8px | 5.59 | 3 |
+| Intro paragraph | 18.4 / 16px | 5.99 | 4.5 |
+| "What's next" line under the intro | 19.2 / 16.8px | 5.59 | 4.5 |
+| "What's next" Instagram link | 19.2 / 16.8px | 5.99 | 4.5 |
+| Show title (Constellations) | 54.4 / 35.2px | 4.18 | 3 |
+| `.show-presented` | 12px | 10.91 | 4.5 |
+| Run line | 22.4px | 9.01 | 4.5 |
+| Run sub-label | 12px | 4.99 | 4.5 |
+| Show blurb | 15.2px | 10.91 | 4.5 |
+| Venue | 13.6px | 10.91 | 4.5 |
+| Credits | 12.5px | 10.91 | 4.5 |
+| "Opening Night" heading | 27.2px | 4.99 | 3 |
+| Archive stage direction | 17.6px | 5.59 | 4.5 |
+| Archive Instagram link | 13.6px | 5.59 | 4.5 |
+| Back to the top | 13.1px | 4.69 | 4.5 |
+| "Past Production" eyebrow | 18.4px | 4.99 | 4.5 |
+| Gallery cue line | 16px | 10.91 | 4.5 |
+| Archive eyebrow | 18.4px | 4.69 | 4.5 |
+| Archive masthead | 12px | 12.23 | 4.5 |
+| Act label | 12px | 5.59 | 4.5 |
+| Stub top (orange stub) | 12px | 7.09 | 4.5 |
+| Stub top (teal stub) | 12px | 7.91 | 4.5 |
+| Stub foot (orange stub) | 12px | 7.09 | 4.5 |
+| Stub foot (teal stub) | 12px | 7.91 | 4.5 |
+| Scene kind | 12px | 4.69 | 4.5 |
+| "See the production" link | 13.1px | 4.69 | 4.5 |
+| Intermission note | 12px | 12.23 | 4.5 |
+| Footer Instagram link | 14.4px | 5.04 | 4.5 |
+| Copyright line | 12px | 4.95 | 4.5 |
+| Photo view links | 16.8px | 14.72 | 4.5 |
+| Photo view count | 16.8px | 13.13 | 4.5 |
 
 The photo view rows are measured over white, the lightest thing the 94% dark sheet can sit on.
 
 ### Left as it was
 
-- The navy `#0d0d1a` show section and the glowing orange "Constellations" title.
-- Baloo 2 for the main headings.
-- The hero's two soft discs (the measuring script accounts for them).
+- ~~The navy `#0d0d1a` show section and the glowing orange "Constellations" title.~~ Closed by
+  backlog B4: the show section is on paper, the glow is gone.
+- ~~Baloo 2 for the main headings.~~ Closed by backlog B2: headings are in Fraunces.
+- The hero's two soft discs (the measuring script accounts for them). Open: backlog B17.
 
 These are the rest of "one visual language, all the way". They change the look of the page more
 than tape and eyebrows do, so they wait for Nick to see this round first.
@@ -283,17 +286,19 @@ than tape and eyebrows do, so they wait for Nick to see this round first.
 
 It has no JavaScript, so: Escape does not close it (Close, a tap on the photo or the dark area, or
 the browser's Back button do), and every photo opened adds a step to the browser's Back history.
+Backlog B18 holds the choice of adding a few lines of JavaScript for this.
 
 ### Follow-ups, not done
 
-- The big flier's alt text is "Constellations — Takes a Village LA": thin, and it has an em dash.
-- Em dashes remain in the `<title>` and the meta descriptions.
+- ~~The big flier's alt text is thin and has an em dash.~~ Done by backlog B10: it now
+  describes the art.
+- ~~Em dashes remain in the `<title>` and the meta descriptions.~~ Done by backlog B10.
 - The gallery originals are 512px tall, so the large view is soft on a big screen. Larger
-  originals would fix it.
+  originals would fix it. Backlog B19, waiting for the photos.
 - `python -m http.server` lets the browser reuse an old copy of the page. A `Cache-Control:
-  no-store` header in the `launch.json` one-liner would end the stale reloads.
+  no-store` header in the `launch.json` one-liner would end the stale reloads. Backlog B15.
 
-### Planned additions (asked for by Nick 2026-11-23): not started, nothing built
+### Planned additions (asked for by Nick 2026-11-23): now backlog B5a to B5d
 
 - **Drum circle offerings:** a page about them. Content to come from Nick.
 - **Acting classes:** something about them. Open: its own page, or a section on an existing one.
@@ -311,7 +316,7 @@ file needs a `put` line in `.github/workflows/deploy.yml`.
 - "Hello, Friends!" twice: keep both.
 - "Back to the top" text link and the round button: keep both.
 
-## Critique 2, 2026-11-24: step 1 built, uncommitted
+## Critique 2, 2026-11-24: steps 1 to 4 live, the rest in `docs/BACKLOG.md`
 
 Whole page as published, viewed at 1280x900 and 390 wide. Nielsen score **27/40** (was 22).
 No P0. One AI-slop tell left (the glowing title on navy), which Nick has now decided to remove.
@@ -354,14 +359,16 @@ No P0. One AI-slop tell left (the glowing title on navy), which Nick has now dec
 
 1. [x] `/onboard`: one-line Upcoming note, a plain sentence in the hero saying what the company
    does, archive moved up. Done 2026-11-24, uncommitted; see "Step 1, done" below.
-2. `/normalize`: show section onto paper, glow removed; fold the repeated Constellations telling.
-3. `/typeset`: section headings to Fraunces, hero tagline larger.
-4. `/adapt`: phone layout of archive scenes; footer line; menu room for a fourth link.
+2. [x] `/normalize`: show section onto paper, glow removed (backlog B4); fold the repeated
+   Constellations telling (B6).
+3. [x] `/typeset`: section headings to Fraunces, hero tagline larger (B2).
+4. [x] `/adapt`: phone layout of archive scenes (B3). Footer line is B13; menu room for a fourth
+   link is B5d.
 5. Build the Offerings page (needs Nick's content and the contact address), with a design note
    here first since it adds a page, menu links and `put` lines in the deploy workflow.
 6. `/polish` last.
 
-### Step 1, done 2026-11-24 (uncommitted)
+### Step 1, done 2026-11-24 (live)
 
 - **Upcoming Events section removed.** In its place one line closes the Intro, `p.next-note`,
   which carries `id="upcoming"` so the menu's "What's next" still lands on it (84px down, clear of
@@ -388,5 +395,5 @@ No P0. One AI-slop tell left (the glowing title on navy), which Nick has now dec
   390 (was 2,948). The rest of the distance is the Constellations section and its gallery, about
   1,150px on desktop, which is step 2's to shorten.
 - `README.md`: section table and the "Announce a new production" note updated. Its Past
-  Production row still describes struck-through dates and there is still no archive row (the P3
-  above).
+  Production row still described struck-through dates and there was no archive row (the P3
+  above); backlog B11 fixed both on 2026-11-25.
