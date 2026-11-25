@@ -1110,6 +1110,12 @@ footer {
   letter-spacing: 0.1em;
   opacity: 0.85;
 }
+.copyright span { white-space: nowrap; }
+/* too narrow for one line: name and "Nonprofit Organization" each get a line, no dot */
+@media (max-width: 520px) {
+  .copyright span { display: block; }
+  .copyright .sep { display: none; }
+}
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
