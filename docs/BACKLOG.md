@@ -50,7 +50,8 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 | B17 | The hero's two soft discs: keep, restyle or remove | Left as it was | S | 1 | done 2026-11-25 (Nick took the recommendation: remove). The `.hero::before/::after` discs are gone from `site.css`, so both `index.html` and `missing.html` lose them; `site.css?v=6`. `docs/measure-contrast.js` no longer blends discs in; phone hero rows rose (sentence 11.2, Instagram link 5.07), CRITIQUE "Left as it was" closed. No fails at 1280 and 390 on both pages. Deploy run 45568832824 succeeded. |
 | B18 | Escape closes a large photo, and photos stop adding Back steps. Needs a few lines of JavaScript on a site that has none | Limits of the large photo view | S | 1 | done 2026-11-25 (Nick took the recommendation). New deferred `site.js?v=1`, linked from `index.html` only (`missing.html` has no large views), with its `put` line: clicks on `.shot`, `.poster-open` and links inside `.lightbox` go through `location.replace(hash)`, and Escape follows the open view's backdrop link, so no Back steps are added and the page does not move (checked: history length and scroll unchanged). Without JS the views work as before via `:target`. README's "No JavaScript" line corrected. Deploy run 45569230063 succeeded; live `site.js` serves 200. |
 | B19 | Larger gallery originals (the current ones are 512px tall, so the large view is soft) | Follow-ups | S | 1 | blocked: needs larger original photos from Nick |
-| B20 | Final `/polish` pass over the whole page. Run last, after every other row is done or struck | Critique 2, step 6 | M | 1 | todo. Waits by its own terms: B5a, B17 and B18 need Nick, and B5c, B5d and B19 are blocked, so a batch skips it until those are done or struck. |
+| B20 | Final `/polish` pass over the home page and `missing.html` as they stand | Critique 2, step 6 | M | 1 | todo. Nick said on 2026-11-25: run it now, without waiting for the Offerings rows; the Offerings page gets its own pass (B21). |
+| B21 | `/polish` pass over `offerings.html` once it is built | Split of B20 | S | 1 | blocked: needs B5c and B5d |
 
 ## Offerings page
 
@@ -120,3 +121,4 @@ Then B5c builds the page, with `put offerings.html` and a `put` per photo in the
   session marks them needs-decision with a recommendation rather than guess.
 - Later the same day: B17, remove the hero discs (on `missing.html` too); B18, add the small
   deferred `site.js` as recommended. Both rows are todo again. B5a is still waiting for Nick.
+- Later still: B20 runs now on the pages as they stand; B21 is the Offerings page's own pass.
