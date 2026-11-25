@@ -4,7 +4,9 @@ Website for **Takes a Village**, a Los Angeles nonprofit theater company staging
 
 Live at **[takesavillage.la](https://takesavillage.la/)**.
 
-One static page (`index.html`) and one stylesheet (`site.css`, shared by every page). No build step, no JavaScript, no server code. When `site.css` changes, bump the `?v=` number in each page's `<link>` to it so returning visitors get the new copy.
+One static page (`index.html`), a not-found page (`missing.html`) and one stylesheet (`site.css`, shared by every page). No build step, no JavaScript, no server code. When `site.css` changes, bump the `?v=` number in each page's `<link>` to it so returning visitors get the new copy.
+
+`missing.html` is what DreamHost shows for any address that has no page (its Apache looks for that name in the site folder, so no `.htaccess` is needed). It is served at the missing address, so its links and asset paths start with `/`. Keep its menu links (`/#upcoming` and so on) in step with the home page's.
 
 ## Page sections
 

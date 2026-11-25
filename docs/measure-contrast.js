@@ -91,7 +91,17 @@
     ['.lightbox-bar a', 'Photo view links'],
     ['.lightbox-count', 'Photo view count'],
   ];
-  const rows = targets.map(([sel, label]) => {
+  // the not-found page (missing.html) has its own short list
+  const lostTargets = [
+    ['.site-nav a', 'Menu link'],
+    ['.lost-dir', 'Not-found stage direction'],
+    ['.lost-title', 'Not-found heading'],
+    ['.lost-text', 'Not-found sentence'],
+    ['.lost-home', 'Not-found home button text'],
+    ['.social-link', 'Footer Instagram link'],
+    ['.copyright', 'Copyright line'],
+  ];
+  const rows = (document.querySelector('.lost') ? lostTargets : targets).map(([sel, label]) => {
     const el = document.querySelector(sel);
     if (!el) return { label, missing: true };
     const cs = getComputedStyle(el);

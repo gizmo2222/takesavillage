@@ -23,6 +23,7 @@ jobs:
           put site.css /home/takesavillage/takesavillage.la/site.css
           put constellations-flier.jpg /home/takesavillage/takesavillage.la/constellations-flier.jpg
           put index.html /home/takesavillage/takesavillage.la/index.html
+          put missing.html /home/takesavillage/takesavillage.la/missing.html
           put logo.png /home/takesavillage/takesavillage.la/logo.png
           put favicon.svg /home/takesavillage/takesavillage.la/favicon.svg
           -mkdir /home/takesavillage/takesavillage.la/gallery
