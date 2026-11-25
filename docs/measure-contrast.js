@@ -61,6 +61,7 @@
     ['.intro p', 'Intro paragraph'],
     ['.next-note', '"What\'s next" line under the intro'],
     ['.next-note a', '"What\'s next" Instagram link'],
+    ['.show-title', 'Show title (Constellations)'],
     ['.show-presented', '.show-presented'],
     ['.show-run', 'Run line'],
     ['.show-run span', 'Run sub-label'],
