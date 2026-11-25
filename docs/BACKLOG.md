@@ -45,12 +45,12 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 | B12 | Remove the hover effect on ticket stubs (`.scene:hover .stub`), since a scene is not a link | Critique 2, P3 | S | 1 | done 2026-11-25. Removed `.scene:hover .stub` and the stub's now-unused transition from `site.css`; stubs keep their tilt and no longer move on hover at any width. `site.css?v=2`. Deploy run 45561662952 succeeded. |
 | B13 | Footer copyright leaves "Organization" alone on a line at 390px | Critique 2, P3 | S | 1 | done 2026-11-25. The copyright line is three spans; at 520px and below the name and "Nonprofit Organization" each take a line and the dot is hidden, wider it stays one line (checked at 390, 540, 1280). `site.css?v=3`. Deploy run 45561870028 succeeded. |
 | B14 | Unmasked poster is unreadable at thumbnail size: give it a large view like the gallery photos | Critique 2, P3 | S | 1 | done 2026-11-25. The poster thumbnail links to `#poster-unmasked`, a large view built like the gallery's (CSS `:target`, no JS) at the end of the archive section; it closes to `#poster-closed` and the page does not move. New `--cap` on `.lightbox img` keeps it at the image's own 360px (3x the thumbnail), so no upscaling. Adds a Back step like the gallery (B18). `site.css?v=4`; README row updated. Deploy run 45562178072 succeeded. |
-| B15 | `Cache-Control: no-store` in the `.claude/launch.json` preview one-liner, to end stale reloads | Follow-ups | S | 1 | todo |
-| B16 | A not-found page in the site's look (`404.html` plus whatever DreamHost needs to serve it) | Critique 2, heuristic 9 | S | 1 | todo |
-| B17 | The hero's two soft discs: keep, restyle or remove | Left as it was | S | 1 | todo |
-| B18 | Escape closes a large photo, and photos stop adding Back steps. Needs a few lines of JavaScript on a site that has none | Limits of the large photo view | S | 1 | todo |
+| B15 | `Cache-Control: no-store` in the `.claude/launch.json` preview one-liner, to end stale reloads | Follow-ups | S | 1 | done 2026-11-25. The `site` one-liner in `.claude/launch.json` builds a handler subclass that adds `Cache-Control: no-store` to every response (checked on `/`, `site.css`, `logo.png`), so a plain reload shows edits. `docs/CRITIQUE.md` preview note and follow-up updated. Local only, nothing deployed; deploy run 45562540297 succeeded. |
+| B16 | A not-found page in the site's look (`404.html` plus whatever DreamHost needs to serve it) | Critique 2, heuristic 9 | S | 1 | done 2026-11-25. Named `missing.html`, not `404.html`: DreamHost's Apache already points its 404 ErrorDocument there, so no `.htaccess` (none touched). Paper hero, small taped logo, stage direction, "This scene isn't in the script", one home button; root-absolute paths, `noindex`; `site.css?v=5`, `put` line, README note, contrast script has its rows (no fails at 1280 and 390). Deploy run 45562864123 succeeded; live `/nope-xyz` and `/some/deep/path.html` return 404 with the page. |
+| B17 | The hero's two soft discs: keep, restyle or remove | Left as it was | S | 1 | needs-decision 2026-11-25. Question: keep, restyle or remove the hero's two 8% discs (teal top left, orange bottom right)? Recommendation: remove them; they are the one decoration on the page not drawn from the paper-and-tape language, the tape and logo carry the hero alone, and the contrast script's disc check goes too. Second choice: keep as they are. `missing.html` uses `.hero` too, so the choice covers both pages. |
+| B18 | Escape closes a large photo, and photos stop adding Back steps. Needs a few lines of JavaScript on a site that has none | Limits of the large photo view | S | 1 | needs-decision 2026-11-25. Question: add the site's first JavaScript so Escape closes a large view (gallery and poster) and opening, stepping or closing one replaces the history entry instead of adding a Back step? Recommendation: yes, as about 15 lines in a deferred `site.js` (its own `put` line) that only enhances: with it off the views work as now. README's "No JavaScript" line changes to say so. |
 | B19 | Larger gallery originals (the current ones are 512px tall, so the large view is soft) | Follow-ups | S | 1 | blocked: needs larger original photos from Nick |
-| B20 | Final `/polish` pass over the whole page. Run last, after every other row is done or struck | Critique 2, step 6 | M | 1 | todo |
+| B20 | Final `/polish` pass over the whole page. Run last, after every other row is done or struck | Critique 2, step 6 | M | 1 | todo. Waits by its own terms: B5a, B17 and B18 need Nick, and B5c, B5d and B19 are blocked, so a batch skips it until those are done or struck. |
 
 ## Offerings page
 
@@ -105,9 +105,10 @@ Then B5c builds the page, with `put offerings.html` and a `put` per photo in the
   both widths (how to run it is in its header).
 - Before running `docs/measure-contrast.js`, finish the fade-ins
   (`document.getAnimations().forEach(a => a.finish())`) or the hero and intro rows read ratio 1.
-- `site.css` is at `?v=4` after B14. Large views (`.lightbox`) take an optional `--cap` (max height, default 640px) for images smaller than the gallery's.
+- `site.css` is at `?v=5` after B16 (both `index.html` and `missing.html` link it; bump both). Large views (`.lightbox`) take an optional `--cap` (max height, default 640px) for images smaller than the gallery's.
 - `gallery/gallery (4).jpg` and `(5).jpg` are no longer on the page (B8). Nick may delete them from
   the repo and the server; a session should not.
+- Since B16, `docs/measure-contrast.js` measures a short row list on `missing.html` (it detects `.lost`) and the full list on the home page.
 
 ## Decided with Nick, 2026-11-25
 
