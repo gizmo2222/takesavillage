@@ -19,17 +19,6 @@
 
   const hero = document.querySelector('.hero');
   const heroTop = { r: 0xff, g: 0xf8, b: 0xee }, heroBot = { r: 0xfd, g: 0xe8, b: 0xc0 };
-  const circleHit = (el, pseudo) => {
-    // true when any corner of el lies inside the hero's decorative circle
-    const cs = getComputedStyle(hero, pseudo), hr = hero.getBoundingClientRect(), r = el.getBoundingClientRect();
-    const w = parseFloat(cs.width), h = parseFloat(cs.height);
-    const left = cs.left !== 'auto' && pseudo === '::before' ? hr.left + parseFloat(cs.left) : hr.right - parseFloat(cs.right) - w;
-    const top = pseudo === '::before' ? hr.top + parseFloat(cs.top) : hr.bottom - parseFloat(cs.bottom) - h;
-    const cx = left + w / 2, cy = top + h / 2, rad = w / 2;
-    return [[r.left, r.top], [r.right, r.top], [r.left, r.bottom], [r.right, r.bottom]]
-      .some(([x, y]) => Math.hypot(x - cx, y - cy) < rad);
-  };
-
   const bgOf = (el) => {
     // nearest ancestor with a solid background-color; the hero gradient is sampled at the element's bottom edge (its darkest point)
     let notes = '';
@@ -39,8 +28,6 @@
         const t = Math.min(1, Math.max(0, (r.bottom - hr.top) / hr.height));
         let c = { r: heroTop.r + (heroBot.r - heroTop.r) * t, g: heroTop.g + (heroBot.g - heroTop.g) * t, b: heroTop.b + (heroBot.b - heroTop.b) * t, a: 1 };
         notes = 'gradient@' + Math.round(t * 100) + '%';
-        if (circleHit(el, '::before')) { c = over({ r: 0x2e, g: 0xad, b: 0xa3, a: 0.08 }, c); notes += '+teal disc'; }
-        if (circleHit(el, '::after')) { c = over({ r: 0xe8, g: 0x72, b: 0x1a, a: 0.08 }, c); notes += '+orange disc'; }
         return { c, notes };
       }
       const b = parse(getComputedStyle(n).backgroundColor);
