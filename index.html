@@ -309,10 +309,11 @@
     }
     .next-note a:hover { text-decoration-thickness: 2px; }
 
-    /* ── show section (unified dark) ── */
+    /* ── show section: warm paper, the same sheet as the gallery under it;
+       the taped flier is the one dark thing on it ── */
     .show-section {
-      background: #0d0d1a;
-      padding: 4rem 2rem;
+      background: var(--warm);
+      padding: 4rem 2rem 1.5rem;
     }
 
     /* eyebrow labels speak in the archive's voice: Fraunces italic, not tracked capitals */
@@ -326,7 +327,7 @@
     }
 
     .show-eyebrow {
-      color: var(--teal2);
+      color: var(--teal-ink);
       margin-bottom: 2.4rem;
       text-align: center;
     }
@@ -361,14 +362,14 @@
       width: 100%;
       height: auto;
       border: 8px solid #fff;
-      box-shadow: 6px 8px 0 rgba(0,0,0,0.55);
+      box-shadow: 6px 8px 0 rgba(92,51,23,0.28);
     }
 
     /* ── show info panel ── */
     .show-info {
       flex: 1;
       min-width: 0;
-      color: #fff;
+      color: var(--ink);
       text-align: left;
     }
 
@@ -376,9 +377,10 @@
       font-family: 'Fraunces', Georgia, serif;
       font-size: clamp(2.2rem, 5vw, 3.4rem);
       font-weight: 800;
-      color: var(--orange2);
+      color: var(--orange-ink);
       line-height: 1;
-      text-shadow: 0 2px 20px rgba(240,160,48,0.4);
+      /* a print offset, like the archive title's; no glow */
+      text-shadow: 0.05em 0.04em 0 rgba(46,173,163,0.5);
     }
 
     .show-presented {
@@ -386,14 +388,14 @@
       font-size: 0.75rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
+      color: var(--ink);
       font-weight: 600;
     }
 
     .show-desc {
       margin-top: 1.2rem;
       font-style: italic;
-      color: rgba(255,255,255,0.7);
+      color: var(--ink);
       font-size: 0.95rem;
       line-height: 1.75;
     }
@@ -406,7 +408,7 @@
       font-weight: 600;
       font-size: 1.4rem;
       line-height: 1.3;
-      color: var(--warm);
+      color: var(--brown);
     }
 
     .show-run span {
@@ -418,26 +420,26 @@
       font-weight: 600;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--teal2);
+      color: var(--teal-ink);
     }
 
     /* ── venue ── */
     .venue {
       margin-top: 1.4rem;
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.55);
+      color: var(--ink);
       line-height: 1.6;
     }
 
     .venue strong {
-      color: rgba(255,255,255,0.85);
-      font-weight: 600;
+      color: var(--brown);
+      font-weight: 700;
     }
 
     .credits {
       margin-top: 1.2rem;
       font-size: 0.78rem;
-      color: rgba(255,255,255,0.5);
+      color: var(--ink);
       font-style: italic;
     }
 
@@ -1208,9 +1210,9 @@
   <p class="next-note" id="upcoming">What's next: a new production is in the works. Follow <a href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener">@takes.a.village.la on Instagram</a> for the announcement.</p>
 </section>
 
-<!-- wave: teal → navy -->
+<!-- wave: teal → warm paper -->
 <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-  <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#0d0d1a"/>
+  <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#fde8c0"/>
   <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#176F67"/>
 </svg>
 
