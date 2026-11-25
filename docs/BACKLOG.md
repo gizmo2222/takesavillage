@@ -33,7 +33,7 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 | B3 | Phone layout of archive scenes: ticket stub above the photo, text at full width | Critique 2, P2; step 4 | S | 3 | done 2026-11-25. At 520px and below `.scene` is one column and the stub lies on its side (month, day, year in a row, dashed divider on the left) above the photo; scene text 262px to 350px wide at 390. Desktop unchanged. B12 (stub hover) still applies at all widths. Deploy run 45558692141 succeeded. |
 | B4 | Show section off navy onto paper, taped flier the only dark object, title glow removed; waves and contrast rows redone | Critique 2, decided; step 2 | M | 3 | done 2026-11-25. Show section on `--warm`, one sheet with the gallery below; ink text, flier shadow brown; title `--orange-ink` with the archive title's teal print offset (4.18, large). Intro wave now teal to `#fde8c0`; contrast script has a show-title row, no fails at both widths. Done directly, not with workers (one section of one file). `docs/CRITIQUE.md` contrast table still lists navy ratios (B11). Deploy run 45559176338 succeeded. |
 | B5a | Offerings page, design note for Nick to approve: page outline, what the menu and hero links say, where the email link sits. Write it under "Offerings page" below and mark this row needs-decision | Planned additions; Critique 2, P1; step 5 | S | 3 | needs-decision 2026-11-25. Note written under "Offerings page": page outline, menu label (recommend "Classes & drums"), hero sentence words become the links, email link only on the Offerings page. Nick approves it and sends text, photos and the address. |
-| B5b | Move the shared CSS out of `index.html` into one stylesheet with its `put` line; prove the home page is unchanged at both widths | Split of B5 | M | 3 | todo |
+| B5b | Move the shared CSS out of `index.html` into one stylesheet with its `put` line; prove the home page is unchanged at both widths | Split of B5 | M | 3 | done 2026-11-25. All CSS now in `site.css` (linked as `site.css?v=1`; deploy puts it before `index.html`); README and `.impeccable.md` updated. New `docs/style-fingerprint.js` hashes every element's box and styles: identical before and after at 1280 and 390. Later rows that edit CSS edit `site.css` and bump `?v=`. Deploy run 45559442206 succeeded; live `site.css` serves 200. |
 | B5c | Build `offerings.html` for drum circles and acting classes | Split of B5 | M | 3 | blocked: needs B5a approved and Nick's text |
 | B5d | Email inquiry link, menu and hero links on both pages, room for a fourth menu link at 390px | Split of B5 | S | 3 | blocked: needs B5c and the contact address |
 | B6 | Tell Constellations once: keep the show section as the telling, cut archive Act I Scene 2 to its bill and a pointer | Critique 2, P2 | S | 2 | todo |
@@ -100,6 +100,10 @@ Then B5c builds the page, with `put offerings.html` and a `put` per photo in the
 `, not `
 `.
 - `docs/CRITIQUE.md`, "Left as it was", still lists Baloo 2 headings; B11 can mark that closed by B2.
+- Since B5b the CSS lives in `site.css`, not in `index.html`. Bump `site.css?v=N` in every page's
+  `<link>` whenever `site.css` changes, or returning visitors keep the old copy.
+- To prove a refactor changed nothing visible, run `docs/style-fingerprint.js` before and after at
+  both widths (how to run it is in its header).
 
 ## Decided with Nick, 2026-11-25
 
