@@ -4,13 +4,16 @@ Design critique of `index.html` (whole page, including the new archive section),
 1280x900 and 390x844. `docs/` is not in the deploy list.
 
 **Status: the fix round, the sticky menu with a back-to-top button, and Round 2 (all eight items)
-are done in `index.html` and checked in the browser, but nothing is committed or pushed.**
-`flier.jpg` is the new copy with the dates and the street address removed (Nick said yes on
-2026-11-23; see Round 2, item 1). No decision is open except when to publish.
+are done, committed (`7017120`) and pushed, so they are live.** `flier.jpg` is the copy with the
+dates and the street address removed (Nick said yes on 2026-11-23; see Round 2, item 1).
+A second critique ran on 2026-11-24: see "Critique 2" at the end for its score, issues,
+Nick's decisions and the next steps. Step 1 of Critique 2 is built (2026-11-24), uncommitted;
+steps 2 to 6 are not started.
 
 ## State of the working tree
 
-Uncommitted, awaiting Nick's go-ahead to publish (a push to `master` deploys):
+Published in `7017120`. Uncommitted since: this file, and Critique 2 step 1 in `index.html`,
+`README.md` and `docs/measure-contrast.js` (see "Step 1, done" at the end).
 
 - `index.html`: new `<section class="archive" id="archive">` ("A Year in Three Acts"), six taped
   Instagram photos, intro copy no longer says "new", "this spring" removed. Plus the fix round
@@ -290,9 +293,100 @@ the browser's Back button do), and every photo opened adds a step to the browser
 - `python -m http.server` lets the browser reuse an old copy of the page. A `Cache-Control:
   no-store` header in the `launch.json` one-liner would end the stale reloads.
 
+### Planned additions (asked for by Nick 2026-11-23): not started, nothing built
+
+- **Drum circle offerings:** a page about them. Content to come from Nick.
+- **Acting classes:** something about them. Open: its own page, or a section on an existing one.
+- **Inquiry button, or perhaps a form.** Open: which of the two. A button needs somewhere to
+  send people (the contact email below is still undecided). A form needs something to receive
+  it, and the site has no JavaScript and no server code today.
+
+Whatever is built: the site is one page now, so new pages need links in the menu, and every new
+file needs a `put` line in `.github/workflows/deploy.yml`.
+
 ### Decided, no change
 
 - Donate button: leave it alone, no line about what it funds and no tax note.
 - Contact email: later. Stays on this list until Nick has an address to use.
 - "Hello, Friends!" twice: keep both.
 - "Back to the top" text link and the round button: keep both.
+
+## Critique 2, 2026-11-24: step 1 built, uncommitted
+
+Whole page as published, viewed at 1280x900 and 390 wide. Nielsen score **27/40** (was 22).
+No P0. One AI-slop tell left (the glowing title on navy), which Nick has now decided to remove.
+
+### Issues
+
+- **P1. The page opens with nothing.** Hero is a logo and a Donate button, then an empty
+  "Upcoming Events" section; the archive starts about 2,500px down (desktop).
+- **P1. The hero never says what the company does.** The only description is the 12px
+  tracked-caps tagline, and "Nonprofit Theater" hides the drum circles and workshops that are
+  five of the eight archive scenes.
+- **P1. No route to book or ask anything except Instagram.**
+- **P2. The navy show section and its glowing title** break the paper-and-tape language.
+- **P2. Constellations is told three times** (intro, show section, archive Act I Scene 2).
+- **P2. Phone archive:** the ticket-stub column takes about a quarter of a 390px screen, leaving
+  a text column of roughly 30 characters and a dead gutter under every stub.
+- **P2. One section, three names** (menu "The year so far", eyebrow "The Archive", heading
+  "A Year in Three Acts"); the menu shows no current section.
+- **P2. Gallery picks:** photos 3, 4 and 5 are near-duplicates; photo 2 is an Instagram story
+  screenshot with the app's buttons in it.
+- **P3.** `.scene:hover .stub` straightens and grows the stub although a scene is not a link;
+  footer copyright leaves "Organization" alone on a line at 390px; the Unmasked poster is
+  unreadable at thumbnail size; `README.md` still describes struck-through dates and has no
+  archive row; a returning visitor's browser may still hold the old `flier.jpg` (it kept its
+  file name), so a new name such as `flier-2.jpg` would force the clean copy.
+
+### Decided by Nick, 2026-11-24
+
+- **Upcoming Events:** nothing is dated yet. Shrink the empty section to one line under the
+  intro so the archive moves up.
+- **Show section:** move it off navy onto the paper look, with the taped flier as the only dark
+  object, and drop the title glow. (Closes the first line of "Left as it was".)
+- **Headings:** set section headings in Fraunces; keep Baloo 2 only where it echoes the logo.
+  (Closes the second line of "Left as it was". The hero's two discs are still undecided.)
+- **Offerings:** one second page for drum circles and acting classes, with the inquiry on it,
+  linked from the menu and the hero. (Closes the "its own page, or a section" question.)
+- **Inquiry:** an email link (`mailto:`), no form. Blocked until Nick has the contact address.
+
+### Next steps, in order (each its own session)
+
+1. [x] `/onboard`: one-line Upcoming note, a plain sentence in the hero saying what the company
+   does, archive moved up. Done 2026-11-24, uncommitted; see "Step 1, done" below.
+2. `/normalize`: show section onto paper, glow removed; fold the repeated Constellations telling.
+3. `/typeset`: section headings to Fraunces, hero tagline larger.
+4. `/adapt`: phone layout of archive scenes; footer line; menu room for a fourth link.
+5. Build the Offerings page (needs Nick's content and the contact address), with a design note
+   here first since it adds a page, menu links and `put` lines in the deploy workflow.
+6. `/polish` last.
+
+### Step 1, done 2026-11-24 (uncommitted)
+
+- **Upcoming Events section removed.** In its place one line closes the Intro, `p.next-note`,
+  which carries `id="upcoming"` so the menu's "What's next" still lands on it (84px down, clear of
+  the 48px menu, at both widths): "What's next: a new production is in the works. Follow
+  @takes.a.village.la on Instagram for the announcement." The section's "see the year so far"
+  link went with it; the menu has that link.
+- **Hero sentence** (`p.hero-line`, Fraunces italic, under the tagline), chosen by Nick from
+  three: "We stage plays in a Van Nuys backyard, lead drum circles and teach arts workshops."
+  Not chosen: "We put on plays, lead drum circles and teach workshops in acting, art and rhythm."
+  and "Backyard theater, drum circles and arts workshops, made together the way a village makes
+  things."
+- **Waves:** the wave under the Intro now runs teal to navy (fill below `#0d0d1a`, above
+  `#176F67`). Step 2 moves the show section onto paper, so that fill changes again then.
+- **Measured** with `docs/measure-contrast.js` (36 rows, none failing, none missing) at 1280x900
+  and 390x844; no horizontal overflow, menu on one line at both.
+
+  | Text | 1280 | 390 |
+  |---|---|---|
+  | Hero sentence, `#4a2811` on the hero gradient | 23.2px, 11.21 | 19.2px, 10.41 (over the orange disc) |
+  | "What's next" line, `#fff6e8` on `#176f67` | 19.2px, 5.59 | 16.8px, 5.59 |
+  | Its Instagram link, `#ffffff` on `#176f67` | 19.2px, 5.99 | 16.8px, 5.99 |
+
+- **How far the archive moved:** it starts at 2,389px at 1280 wide (was 2,567) and 2,791px at
+  390 (was 2,948). The rest of the distance is the Constellations section and its gallery, about
+  1,150px on desktop, which is step 2's to shorten.
+- `README.md`: section table and the "Announce a new production" note updated. Its Past
+  Production row still describes struck-through dates and there is still no archive row (the P3
+  above).

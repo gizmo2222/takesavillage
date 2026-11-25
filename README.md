@@ -10,9 +10,8 @@ One static page (`index.html`) with inline CSS. No build step, no JavaScript, no
 
 | Section | What's there |
 |---|---|
-| **Hero** | Logo, tagline, Instagram link, **Donate via Venmo** button (`@Takes-a-village1`) |
-| **Intro** ("Hello, Friends!") | Who the company is |
-| **Upcoming Events** | Placeholder until the next production is announced |
+| **Hero** | Logo, tagline, one sentence saying what the company does (`p.hero-line`), Instagram link, **Donate via Venmo** button (`@Takes-a-village1`) |
+| **Intro** ("Hello, Friends!") | Who the company is, then the one-line "What's next" note (`p.next-note`, `id="upcoming"`, where the menu's "What's next" lands) |
 | **Past Production** | *Constellations* (May 2026): flier, description, performance dates (struck through), venue, credits |
 | **Opening Night** | Scrolling photo strip from `gallery/` |
 | **Footer** | Instagram link, copyright |
@@ -23,7 +22,7 @@ Colours: teal `#2EADA3`, cream `#FFF6E8`, warm `#FDE8C0`, dark `#0d0d1a`, brown 
 
 ## Common updates
 
-- **Announce a new production:** replace the placeholder text in the Upcoming Events section. To feature it fully, copy the Past Production section's layout (flier, dates, venue, credits) into Upcoming Events.
+- **Announce a new production:** edit the "What's next" line at the end of the Intro (`p.next-note`). To feature it fully, add a section after the Intro that copies the Past Production section's layout (flier, dates, venue, credits), move `id="upcoming"` onto it, and recolour the waves either side by the rule above.
 - **After a production closes:** move it into Past Production, add the `past` class to each date (strikes it through), and swap in its flier and gallery.
 - **Add gallery photos:** put them in `gallery/`, add an `<img>` with real `width`/`height` to the strip, **and** add a matching `put` line to the deploy workflow — it uploads each file by name.
 - **New files of any kind** need a `put` line in `.github/workflows/deploy.yml`, or they won't reach the server.

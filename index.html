@@ -236,6 +236,20 @@
       animation: fadeUp 0.8s 0.4s ease both;
     }
 
+    /* what the company does, in one plain sentence; the tagline is too small to carry it alone */
+    .hero-line {
+      max-width: 31ch;
+      margin-top: 0.9rem;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.2rem, 3vw, 1.45rem);
+      line-height: 1.4;
+      color: var(--ink);
+      text-wrap: balance;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
     /* ── wavy divider ── */
     .wave {
       display: block;
@@ -271,6 +285,29 @@
       animation: fadeUp 0.8s 0.8s ease both;
     }
 
+    /* what's next: one line under the intro until a production has a date.
+       The menu's "What's next" lands here; it stops a little lower so the rule above it shows. */
+    .intro .next-note {
+      margin-top: 1.7rem;
+      padding-top: 1.4rem;
+      border-top: 1px dashed rgba(255,246,232,0.5);
+      scroll-margin-top: 1.5rem;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+      line-height: 1.55;
+      color: var(--cream);
+      text-wrap: balance;
+      animation-delay: 1s;
+    }
+    .next-note a {
+      color: #fff;
+      font-weight: 600;
+      text-underline-offset: 0.2em;
+    }
+    .next-note a:hover { text-decoration-thickness: 2px; }
+
     /* ── show section (unified dark) ── */
     .show-section {
       background: #0d0d1a;
@@ -278,7 +315,7 @@
     }
 
     /* eyebrow labels speak in the archive's voice: Fraunces italic, not tracked capitals */
-    .show-eyebrow, .upcoming-eyebrow, .archive-eyebrow {
+    .show-eyebrow, .archive-eyebrow {
       font-family: 'Fraunces', Georgia, serif;
       font-style: italic;
       font-weight: 600;
@@ -424,38 +461,7 @@
       .site-nav a { font-size: 0.95rem; padding: 0.8rem 0.2rem; }
     }
 
-    /* ── upcoming section ── */
-    .upcoming-section {
-      background: var(--cream);
-      padding: 3.5rem 1.5rem;
-      text-align: center;
-    }
-
-    .upcoming-eyebrow {
-      color: var(--orange-ink);
-      margin-bottom: 0.5rem;
-    }
-
-    .upcoming-heading {
-      font-family: 'Baloo 2', cursive;
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: 800;
-      color: var(--brown);
-      margin-bottom: 1rem;
-    }
-
-    .upcoming-placeholder {
-      max-width: 480px;
-      margin: 0 auto;
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--ink);
-      font-style: italic;
-    }
-
-    .upcoming-more { margin-top: 0.25rem; }
-
-    /* ── instagram link (reused in hero + upcoming) ── */
+    /* ── instagram link (hero and the archive's curtain call) ── */
     .ig-link {
       display: inline-flex;
       align-items: center;
@@ -1158,6 +1164,7 @@
 <header class="hero">
   <h1><span class="logo-frame"><img class="logo" src="logo.png" alt="Takes a Village LA" width="430" height="462" fetchpriority="high"></span></h1>
   <p class="tagline">Los Angeles &nbsp;·&nbsp; Nonprofit Theater</p>
+  <p class="hero-line">We stage plays in a Van Nuys backyard, lead drum circles and teach arts workshops.</p>
   <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram">
     <svg aria-hidden="true" focusable="false"><use href="#ig-icon"/></svg>
     @takes.a.village.la
@@ -1178,24 +1185,14 @@
   <p>
     We're Takes a Village, a Los Angeles nonprofit theater company. We started where the village itself began, alongside you, in our backyard, with our first production, <em>Constellations</em>. We have many more goals and plans as we bring this vision to life, and we can't wait to share what's next.
   </p>
+  <p class="next-note" id="upcoming">What's next: a new production is in the works. Follow <a href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener">@takes.a.village.la on Instagram</a> for the announcement.</p>
 </section>
 
-<!-- wave: teal → cream -->
+<!-- wave: teal → navy -->
 <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-  <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#FFF6E8"/>
+  <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 Z" fill="#0d0d1a"/>
   <path d="M0,0 L0,60 C360,0 1080,60 1440,20 L1440,0 Z" fill="#176F67"/>
 </svg>
-
-<section class="upcoming-section" id="upcoming">
-  <p class="upcoming-eyebrow">What's Next</p>
-  <h2 class="upcoming-heading">Upcoming Events</h2>
-  <p class="upcoming-placeholder">Our next production is in the works. Follow us on Instagram and check back here for announcements.</p>
-  <p class="upcoming-more"><a class="scene-link" href="#archive">In the meantime, see the year so far &darr;</a></p>
-  <a class="ig-link on-light" href="https://www.instagram.com/takes.a.village.la/" target="_blank" rel="noopener" aria-label="Takes a Village on Instagram">
-    <svg aria-hidden="true" focusable="false"><use href="#ig-icon"/></svg>
-    @takes.a.village.la
-  </a>
-</section>
 
 <section class="show-section" id="constellations" aria-labelledby="constellations-title">
   <p class="show-eyebrow">Past Production</p>
