@@ -229,15 +229,16 @@ phone.
 `docs/measure-contrast.js`, run after finishing the page's animations, `fails` empty at both
 widths. Remeasured 2026-11-25 (backlog B11) on the page as it now stands: the show section is on
 paper, so its rows no longer read against navy. 4.5 is the minimum for body text, 3 for large
-text. Where the widths differ, both are shown, 1280 first.
+text. Where the widths differ, both are shown, 1280 first. The phone hero rows were remeasured
+after backlog B17 removed the discs.
 
 | Text | Size, 1280 / 390 | Ratio | Needs |
 |---|---|---|---|
 | Menu link | 16.3 / 15.2px | 12.42 | 4.5 |
 | Back-to-top button arrow | 16px | 10.1 | 4.5 |
 | Hero tagline | 16 / 12.8px | 5.21 / 5.22 | 4.5 |
-| Hero sentence (what the company does) | 23.2 / 19.2px | 11.21 / 10.41 | 4.5 |
-| Hero Instagram link | 13.6px | 5.08 / 4.72 | 4.5 |
+| Hero sentence (what the company does) | 23.2 / 19.2px | 11.21 / 11.2 | 4.5 |
+| Hero Instagram link | 13.6px | 5.08 / 5.07 | 4.5 |
 | Donate button text | 13.6px | 5.02 | 4.5 |
 | Intro heading | 41.6 / 28.8px | 5.59 | 3 |
 | Intro paragraph | 18.4 / 16px | 5.99 | 4.5 |
@@ -278,7 +279,8 @@ The photo view rows are measured over white, the lightest thing the 94% dark she
 - ~~The navy `#0d0d1a` show section and the glowing orange "Constellations" title.~~ Closed by
   backlog B4: the show section is on paper, the glow is gone.
 - ~~Baloo 2 for the main headings.~~ Closed by backlog B2: headings are in Fraunces.
-- The hero's two soft discs (the measuring script accounts for them). Open: backlog B17.
+- ~~The hero's two soft discs.~~ Closed by backlog B17: removed on both pages; the tape and
+  logo carry the hero, and the measuring script no longer blends them in.
 
 These are the rest of "one visual language, all the way". They change the look of the page more
 than tape and eyebrows do, so they wait for Nick to see this round first.

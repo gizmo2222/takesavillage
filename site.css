@@ -169,24 +169,6 @@ main:focus { outline: none; }
   transform: translateX(-50%) rotate(-4deg);
 }
 
-/* decorative circles */
-.hero::before, .hero::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.08;
-}
-.hero::before {
-  width: 500px; height: 500px;
-  background: var(--teal);
-  top: -200px; left: -150px;
-}
-.hero::after {
-  width: 400px; height: 400px;
-  background: var(--orange);
-  bottom: -180px; right: -120px;
-}
-
 .logo {
   display: block;
   width: min(300px, 76vw);
@@ -1081,7 +1063,7 @@ html:has(.lightbox:target) { overflow: hidden; scrollbar-gutter: stable; }
 }
 
 /* ── footer ── */
-/* ── not-found page (missing.html): the hero's paper and discs fill the screen,
+/* ── not-found page (missing.html): the hero's paper fills the screen,
    a stage direction and a heading say what happened, one button goes home ── */
 .lost {
   min-height: calc(100vh - 10px - 3.2rem);
