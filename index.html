@@ -1061,8 +1061,27 @@
       .scene-poster.snap.wide { width: 128px; }
     }
 
-    /* too narrow to wrap a title around the poster: stand it above the scene instead */
+    /* too narrow to wrap a title around the poster: stand it above the scene instead.
+       The stub leaves its column and lies on its side above the photo, so the text gets
+       the full width. */
     @media (max-width: 520px) {
+      .scene { grid-template-columns: 1fr; gap: 0.9rem; }
+      .stub { justify-self: start; }
+      .stub-in {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 0.6rem;
+        padding: 0.4rem 1.2rem;
+      }
+      .stub-mid, .stub-mid.sm { font-size: 1.45rem; line-height: 1.1; }
+      .stub-foot {
+        align-self: auto;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+        padding-left: 0.6rem;
+        border-left: 1.5px dashed rgba(58,31,8,0.5);
+      }
       .scene-poster {
         float: none;
         display: block;
