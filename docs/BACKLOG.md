@@ -36,9 +36,9 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 | B5b | Move the shared CSS out of `index.html` into one stylesheet with its `put` line; prove the home page is unchanged at both widths | Split of B5 | M | 3 | done 2026-11-25. All CSS now in `site.css` (linked as `site.css?v=1`; deploy puts it before `index.html`); README and `.impeccable.md` updated. New `docs/style-fingerprint.js` hashes every element's box and styles: identical before and after at 1280 and 390. Later rows that edit CSS edit `site.css` and bump `?v=`. Deploy run 45559442206 succeeded; live `site.css` serves 200. |
 | B5c | Build `offerings.html` for drum circles and acting classes | Split of B5 | M | 3 | blocked: needs B5a approved and Nick's text |
 | B5d | Email inquiry link, menu and hero links on both pages, room for a fourth menu link at 390px | Split of B5 | S | 3 | blocked: needs B5c and the contact address |
-| B6 | Tell Constellations once: keep the show section as the telling, cut archive Act I Scene 2 to its bill and a pointer | Critique 2, P2 | S | 2 | todo |
-| B7 | One name for the archive section across the menu link, eyebrow and heading | Critique 2, P2 | S | 2 | todo |
-| B8 | Gallery picks: drop the near-duplicate audience shots (3, 4, 5 down to one), crop the app buttons out of photo 2; renumber the large views and the deploy list | Critique 2, P2 | S | 2 | todo |
+| B6 | Tell Constellations once: keep the show section as the telling, cut archive Act I Scene 2 to its bill and a pointer | Critique 2, P2 | S | 2 | done 2026-11-25. Archive Act I Scene 2 keeps its stub, kind, title, place, stage direction, bill and the "See the production" link; its poster thumbnail and paragraph are gone (the "party after" detail went with it). `flier.jpg` is now used only by the show section's flier, which makes B9 a one-place change. Deploy run 45559831851 succeeded. |
+| B7 | One name for the archive section across the menu link, eyebrow and heading | Critique 2, P2 | S | 2 | done 2026-11-25. Menu link "The year so far" is now "The Archive", matching the eyebrow "The Archive · Season One" and `#archive`; the heading "A Year in Three Acts" stays as the title. Menu still one line at 390 and shorter, which leaves B5d room for a fourth link. Deploy run 45559963640 succeeded. |
+| B8 | Gallery picks: drop the near-duplicate audience shots (3, 4, 5 down to one), crop the app buttons out of photo 2; renumber the large views and the deploy list | Critique 2, P2 | S | 2 | done 2026-11-25. Six photos: kept 3 (warm, wide) over 4 and 5; photo 2 cropped in place to the story card (202x360, `?v=2`), alt rewritten; large views renumbered 1-6 with wrap-around; cue says "Six". `gallery (4).jpg` and `(5).jpg` are unused but left in the repo and on the server (no deleting data); photo 2's original is in history at 7ef2c24; B19 keeps `?v=` on replaced images. Deploy run 45560305858 succeeded. |
 | B9 | Rename `flier.jpg` so returning visitors cannot be served the old copy with the street address; update `index.html`, social meta and the deploy list | Critique 2, P3 | S | 2 | todo |
 | B10 | Flier alt text (thin, has an em dash); em dashes in `<title>` and the meta descriptions | Follow-ups | S | 2 | todo |
 | B11 | Docs catch-up: `README.md` Past Production row and a row for the archive; stale status lines in `docs/CRITIQUE.md` | Critique 2, P3 | S | 2 | todo |
@@ -104,6 +104,10 @@ Then B5c builds the page, with `put offerings.html` and a `put` per photo in the
   `<link>` whenever `site.css` changes, or returning visitors keep the old copy.
 - To prove a refactor changed nothing visible, run `docs/style-fingerprint.js` before and after at
   both widths (how to run it is in its header).
+- Before running `docs/measure-contrast.js`, finish the fade-ins
+  (`document.getAnimations().forEach(a => a.finish())`) or the hero and intro rows read ratio 1.
+- `gallery/gallery (4).jpg` and `(5).jpg` are no longer on the page (B8). Nick may delete them from
+  the repo and the server; a session should not.
 
 ## Decided with Nick, 2026-11-25
 
