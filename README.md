@@ -15,7 +15,7 @@ One static page (`index.html`) and one stylesheet (`site.css`, shared by every p
 | **Intro** ("Hello, Friends!") | Who the company is, then the one-line "What's next" note (`p.next-note`, `id="upcoming"`, where the menu's "What's next" lands) |
 | **Past Production** (`#constellations`) | *Constellations* (May 2026) on paper: taped flier (`constellations-flier.jpg`), description, run line ("May 8–23, 2026", seven performances), venue, credits |
 | **Opening Night** | Six photos from `gallery/` in a strip that scrolls sideways; each opens a large view (`#photo-1` to `#photo-6`, CSS only) |
-| **The Archive** (`#archive`) | "A Year in Three Acts": Season One as a playbill. Prologue and Acts One to Three, each scene with a ticket stub, most with a taped photo from `archive/`, a stage direction and a bill; an intermission between Acts One and Two; a curtain call with the Instagram link and "Back to the top" |
+| **The Archive** (`#archive`) | "A Year in Three Acts": Season One as a playbill. Prologue and Acts One to Three, each scene with a ticket stub, most with a taped photo from `archive/`, a stage direction and a bill; the Unmasked poster opens a large view (`#poster-unmasked`, CSS only, at its own 360px); an intermission between Acts One and Two; a curtain call with the Instagram link and "Back to the top" |
 | **Footer** | Instagram link, copyright |
 
 The sections are joined by curved SVG "waves". In each wave, the path ending `L1440,60 Z` fills **below** the curve and must use the **next** section's colour; the path ending `L1440,0 Z` fills **above** the curve and must use the **previous** section's colour.

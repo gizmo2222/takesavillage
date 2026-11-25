@@ -624,9 +624,10 @@ html:has(.lightbox:target) { overflow: hidden; scrollbar-gutter: stable; }
 }
 .lightbox img {
   display: block;
-  /* as large as the window allows, up to 640px tall; --ar is the photo's width / height */
-  width: min(100vw - 3rem, (100vh - 10.5rem) * var(--ar), 640px * var(--ar));
-  width: min(100vw - 3rem, (100dvh - 10.5rem) * var(--ar), 640px * var(--ar));
+  /* as large as the window allows, up to --cap tall (640px unless the image is smaller);
+     --ar is the photo's width / height */
+  width: min(100vw - 3rem, (100vh - 10.5rem) * var(--ar), var(--cap, 640px) * var(--ar));
+  width: min(100vw - 3rem, (100dvh - 10.5rem) * var(--ar), var(--cap, 640px) * var(--ar));
   height: auto;
   border: 8px solid #fff;
   box-shadow: 6px 8px 0 rgba(0,0,0,0.5);
@@ -945,6 +946,8 @@ html:has(.lightbox:target) { overflow: hidden; scrollbar-gutter: stable; }
 .scene-poster.tilt-l { transform: rotate(-2.5deg); }
 .scene-poster.tilt-l::before { transform: translateX(-50%) rotate(4deg); }
 .scene-poster.tape-o::before { background: rgba(240,160,48,0.72); }
+/* a poster with a large view: the thumbnail opens it */
+.poster-open { display: block; cursor: zoom-in; }
 .scene-poster figcaption {
   margin-top: 0.45rem;
   font-family: 'Fraunces', Georgia, serif;
