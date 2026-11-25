@@ -25,7 +25,7 @@
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Fraunces:ital,opsz,wght@1,9..144,500..700&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Fraunces:ital,opsz,wght@0,9..144,600..800;1,9..144,500..700&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -228,8 +228,8 @@
 
     .tagline {
       margin-top: 1.4rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
+      font-size: clamp(0.8rem, 2.6vw, 1rem);
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--teal-ink);
       font-weight: 600;
@@ -267,9 +267,10 @@
     }
 
     .intro h2 {
-      font-family: 'Baloo 2', cursive;
+      font-family: 'Fraunces', Georgia, serif;
       font-size: clamp(1.8rem, 5vw, 2.6rem);
       font-weight: 800;
+      line-height: 1.15;
       color: var(--cream);
       text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
       margin-bottom: 1.2rem;
@@ -372,7 +373,7 @@
     }
 
     .show-title {
-      font-family: 'Baloo 2', cursive;
+      font-family: 'Fraunces', Georgia, serif;
       font-size: clamp(2.2rem, 5vw, 3.4rem);
       font-weight: 800;
       color: var(--orange2);
@@ -718,7 +719,7 @@
 
     .archive-title {
       margin-top: 0.8rem;
-      font-family: 'Baloo 2', cursive;
+      font-family: 'Fraunces', Georgia, serif;
       font-weight: 800;
       font-size: clamp(2.6rem, 8vw, 5rem);
       line-height: 0.95;
@@ -876,8 +877,8 @@
 
     .scene-title {
       margin-top: 0.15rem;
-      font-family: 'Baloo 2', cursive;
-      font-weight: 800;
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
       font-size: clamp(1.45rem, 3.4vw, 1.9rem);
       line-height: 1.1;
       color: var(--brown);
@@ -1018,8 +1019,8 @@
     .curtain-call .scene-dir { margin-top: 0; }
     .cc-title {
       margin-top: 0.5rem;
-      font-family: 'Baloo 2', cursive;
-      font-weight: 800;
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
       font-size: clamp(1.7rem, 4.5vw, 2.4rem);
       line-height: 1.1;
       color: var(--brown);
