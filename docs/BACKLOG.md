@@ -28,9 +28,9 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 
 | id | item | source | size | value | status |
 |---|---|---|---|---|---|
-| B1 | Save the design context to `.impeccable.md` so later sessions do not stop to ask for it | Critique 2, open point | S | 3 | todo |
-| B2 | Section headings in Fraunces (Baloo 2 only where it echoes the logo); hero tagline larger | Critique 2, decided; step 3 | S | 3 | todo |
-| B3 | Phone layout of archive scenes: ticket stub above the photo, text at full width | Critique 2, P2; step 4 | S | 3 | todo |
+| B1 | Save the design context to `.impeccable.md` so later sessions do not stop to ask for it | Critique 2, open point | S | 3 | done 2026-11-25. `.impeccable.md` holds users, voice, palette, type rules, Nick's decisions and five principles, written from `docs/CRITIQUE.md` without asking. Not deployed (a repo doc, no `put` line). Update it when Nick decides something new. Deploy run 45558316111 succeeded. |
+| B2 | Section headings in Fraunces (Baloo 2 only where it echoes the logo); hero tagline larger | Critique 2, decided; step 3 | S | 3 | done 2026-11-25. Intro, show, archive, scene and curtain-call headings now upright Fraunces 700-800 (font link adds upright 600..800); Baloo 2 kept only on the Donate button and ticket stubs. Tagline 12px to `clamp(0.8rem, 2.6vw, 1rem)`, one line at 390, ratio 5.21/5.22. B4 still owns the show title's glow and colour. Deploy run 45558509226 succeeded. |
+| B3 | Phone layout of archive scenes: ticket stub above the photo, text at full width | Critique 2, P2; step 4 | S | 3 | done 2026-11-25. At 520px and below `.scene` is one column and the stub lies on its side (month, day, year in a row, dashed divider on the left) above the photo; scene text 262px to 350px wide at 390. Desktop unchanged. B12 (stub hover) still applies at all widths. Deploy run 45558692141 succeeded. |
 | B4 | Show section off navy onto paper, taped flier the only dark object, title glow removed; waves and contrast rows redone | Critique 2, decided; step 2 | M | 3 | todo |
 | B5a | Offerings page, design note for Nick to approve: page outline, what the menu and hero links say, where the email link sits. Write it under "Offerings page" below and mark this row needs-decision | Planned additions; Critique 2, P1; step 5 | S | 3 | todo |
 | B5b | Move the shared CSS out of `index.html` into one stylesheet with its `put` line; prove the home page is unchanged at both widths | Split of B5 | M | 3 | todo |
@@ -55,6 +55,14 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 ## Offerings page
 
 B5 was split on 2026-11-25 into B5a to B5d (rows above). B5a's design note goes here.
+
+## Notes for later sessions
+
+- `core.autocrlf` is on: after a merge or branch switch `index.html` is CRLF in the working copy
+  (blobs are LF). A script that matches multi-line text must match `
+`, not `
+`.
+- `docs/CRITIQUE.md`, "Left as it was", still lists Baloo 2 headings; B11 can mark that closed by B2.
 
 ## Decided with Nick, 2026-11-25
 
