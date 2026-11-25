@@ -10,8 +10,8 @@ Every session reads this file first and writes to it last.
 ## Rules for this repo (they replace the general ones where they differ)
 
 - **A push to `master` deploys the live site** (`.github/workflows/deploy.yml`, SFTP to DreamHost).
-  Whether batch sessions push is Nick's call: see "Open with Nick" below. Until that line is
-  answered, merge into `master` locally and do not push.
+  Nick said on 2026-11-25 that batch sessions push, so every row goes live as it lands. Run the
+  row's checks before the merge, push, then confirm the deploy run succeeded and note it in the row.
 - **There is no test suite.** "The suite passes" here means: the page is opened at 1280x900 and
   390x844 with a fresh query string, no horizontal overflow, no console errors, and
   `docs/measure-contrast.js` reports no fails and no missing rows at both widths (add rows for any
@@ -32,7 +32,10 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 | B2 | Section headings in Fraunces (Baloo 2 only where it echoes the logo); hero tagline larger | Critique 2, decided; step 3 | S | 3 | todo |
 | B3 | Phone layout of archive scenes: ticket stub above the photo, text at full width | Critique 2, P2; step 4 | S | 3 | todo |
 | B4 | Show section off navy onto paper, taped flier the only dark object, title glow removed; waves and contrast rows redone | Critique 2, decided; step 2 | M | 3 | todo |
-| B5 | Offerings page: drum circles and acting classes, inquiry by email link, linked from the menu and the hero | Planned additions; Critique 2, P1; step 5 | L | 3 | todo |
+| B5a | Offerings page, design note for Nick to approve: page outline, what the menu and hero links say, where the email link sits. Write it under "Offerings page" below and mark this row needs-decision | Planned additions; Critique 2, P1; step 5 | S | 3 | todo |
+| B5b | Move the shared CSS out of `index.html` into one stylesheet with its `put` line; prove the home page is unchanged at both widths | Split of B5 | M | 3 | todo |
+| B5c | Build `offerings.html` for drum circles and acting classes | Split of B5 | M | 3 | blocked: needs B5a approved and Nick's text |
+| B5d | Email inquiry link, menu and hero links on both pages, room for a fourth menu link at 390px | Split of B5 | S | 3 | blocked: needs B5c and the contact address |
 | B6 | Tell Constellations once: keep the show section as the telling, cut archive Act I Scene 2 to its bill and a pointer | Critique 2, P2 | S | 2 | todo |
 | B7 | One name for the archive section across the menu link, eyebrow and heading | Critique 2, P2 | S | 2 | todo |
 | B8 | Gallery picks: drop the near-duplicate audience shots (3, 4, 5 down to one), crop the app buttons out of photo 2; renumber the large views and the deploy list | Critique 2, P2 | S | 2 | todo |
@@ -46,24 +49,18 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 | B16 | A not-found page in the site's look (`404.html` plus whatever DreamHost needs to serve it) | Critique 2, heuristic 9 | S | 1 | todo |
 | B17 | The hero's two soft discs: keep, restyle or remove | Left as it was | S | 1 | todo |
 | B18 | Escape closes a large photo, and photos stop adding Back steps. Needs a few lines of JavaScript on a site that has none | Limits of the large photo view | S | 1 | todo |
-| B19 | Larger gallery originals (the current ones are 512px tall, so the large view is soft) | Follow-ups | S | 1 | todo |
+| B19 | Larger gallery originals (the current ones are 512px tall, so the large view is soft) | Follow-ups | S | 1 | blocked: needs larger original photos from Nick |
 | B20 | Final `/polish` pass over the whole page. Run last, after every other row is done or struck | Critique 2, step 6 | M | 1 | todo |
 
-## How the L item would split
+## Offerings page
 
-**B5, Offerings page.** (a) A short design note under this heading for Nick to approve: page
-outline, what the menu and hero links say, where the email link sits. (b) Move the shared CSS out
-of `index.html` into one stylesheet both pages load, with its `put` line, and prove the home page
-is unchanged. (c) Build `offerings.html` with Nick's text for drum circles and acting classes.
-(d) Add the email link and the menu and hero links on both pages, and make room for a fourth
-menu link at 390px. Steps (c) and (d) cannot start without Nick's content and the contact address.
+B5 was split on 2026-11-25 into B5a to B5d (rows above). B5a's design note goes here.
 
-## Open with Nick (asked 2026-11-24)
+## Decided with Nick, 2026-11-25
 
-- Anything to strike or move up.
-- Whether B5 is split into its four steps now.
-- Whether batch sessions push to `master` (each row goes live as it lands) or only merge locally.
-- B5 needs the Offerings text and the contact address; B19 needs larger original photos. Without
-  them those rows will be marked blocked when a session reaches them.
-- B17 and B18 each need a choice from Nick; a session will mark them needs-decision with a
-  recommendation rather than guess.
+- Order stands as listed; nothing struck.
+- Batch sessions push to `master`.
+- Not answered, so the recommended default applies: B5 is split into four rows; B5c, B5d and B19
+  are blocked until Nick supplies the Offerings text, the contact address and larger photos.
+- B17 (hero discs) and B18 (JavaScript so Escape closes a photo) each need Nick's choice: a
+  session marks them needs-decision with a recommendation rather than guess.
