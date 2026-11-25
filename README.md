@@ -4,7 +4,7 @@ Website for **Takes a Village**, a Los Angeles nonprofit theater company staging
 
 Live at **[takesavillage.la](https://takesavillage.la/)**.
 
-One static page (`index.html`) with inline CSS. No build step, no JavaScript, no server code.
+One static page (`index.html`) and one stylesheet (`site.css`, shared by every page). No build step, no JavaScript, no server code. When `site.css` changes, bump the `?v=` number in each page's `<link>` to it so returning visitors get the new copy.
 
 ## Page sections
 
@@ -18,7 +18,7 @@ One static page (`index.html`) with inline CSS. No build step, no JavaScript, no
 
 The sections are joined by curved SVG "waves". In each wave, the path ending `L1440,60 Z` fills **below** the curve and must use the **next** section's colour; the path ending `L1440,0 Z` fills **above** the curve and must use the **previous** section's colour.
 
-Colours: teal `#2EADA3`, cream `#FFF6E8`, warm `#FDE8C0`, dark `#0d0d1a`, brown `#5C3317` (see `:root` in `index.html`). The hero gradient ends in warm.
+Colours: teal `#2EADA3`, cream `#FFF6E8`, warm `#FDE8C0`, brown `#5C3317` (see `:root` in `site.css`). The hero gradient ends in warm.
 
 ## Common updates
 
