@@ -38,8 +38,9 @@ The `site` entry in `.claude/launch.json` reads its port from the `PORT` environ
 has `autoPort` on, so when another server already holds 8123 the preview starts on the next free
 port (8124 in the test) and the tab it opens works. Without `PORT` it falls back to 8123.
 
-After editing, open `index.html` with a new query string (`/index.html?v=2`); a plain reload has
-served a stale copy.
+The `site` entry sends `Cache-Control: no-store` on every response (backlog B15), so a plain
+reload shows the edited files. `python -m http.server` above does not, so with it open
+`index.html` with a new query string (`/index.html?v=2`).
 
 ## Design context (from Nick, in chat)
 
@@ -295,8 +296,8 @@ Backlog B18 holds the choice of adding a few lines of JavaScript for this.
 - ~~Em dashes remain in the `<title>` and the meta descriptions.~~ Done by backlog B10.
 - The gallery originals are 512px tall, so the large view is soft on a big screen. Larger
   originals would fix it. Backlog B19, waiting for the photos.
-- `python -m http.server` lets the browser reuse an old copy of the page. A `Cache-Control:
-  no-store` header in the `launch.json` one-liner would end the stale reloads. Backlog B15.
+- ~~`python -m http.server` lets the browser reuse an old copy of the page.~~ Done by backlog
+  B15: the `launch.json` one-liner sends `Cache-Control: no-store`.
 
 ### Planned additions (asked for by Nick 2026-11-23): now backlog B5a to B5d
 
