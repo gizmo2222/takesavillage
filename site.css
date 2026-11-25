@@ -799,13 +799,11 @@ html:has(.lightbox:target) { overflow: hidden; scrollbar-gutter: stable; }
   --stub: var(--orange2);
   transform: rotate(-3deg);
   filter: drop-shadow(3px 4px 0 rgba(92,51,23,0.2));
-  transition: transform 0.25s ease;
 }
 .stub.teal {
   --stub: var(--teal2);
   transform: rotate(2.5deg);
 }
-.scene:hover .stub { transform: rotate(0deg) scale(1.04); }
 
 .stub-in {
   display: flex;
