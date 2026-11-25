@@ -20,6 +20,7 @@ jobs:
           sudo apt-get install -y sshpass > /dev/null 2>&1
           sshpass -e sftp -o UserKnownHostsFile=.github/known_hosts -o StrictHostKeyChecking=yes \
             ${{ secrets.SFTP_USER }}@takesavillage.la <<'SFTP'
+          put site.css /home/takesavillage/takesavillage.la/site.css
           put index.html /home/takesavillage/takesavillage.la/index.html
           put logo.png /home/takesavillage/takesavillage.la/logo.png
           put favicon.svg /home/takesavillage/takesavillage.la/favicon.svg
