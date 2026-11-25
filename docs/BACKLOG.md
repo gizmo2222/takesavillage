@@ -31,8 +31,8 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 | B1 | Save the design context to `.impeccable.md` so later sessions do not stop to ask for it | Critique 2, open point | S | 3 | done 2026-11-25. `.impeccable.md` holds users, voice, palette, type rules, Nick's decisions and five principles, written from `docs/CRITIQUE.md` without asking. Not deployed (a repo doc, no `put` line). Update it when Nick decides something new. Deploy run 45558316111 succeeded. |
 | B2 | Section headings in Fraunces (Baloo 2 only where it echoes the logo); hero tagline larger | Critique 2, decided; step 3 | S | 3 | done 2026-11-25. Intro, show, archive, scene and curtain-call headings now upright Fraunces 700-800 (font link adds upright 600..800); Baloo 2 kept only on the Donate button and ticket stubs. Tagline 12px to `clamp(0.8rem, 2.6vw, 1rem)`, one line at 390, ratio 5.21/5.22. B4 still owns the show title's glow and colour. Deploy run 45558509226 succeeded. |
 | B3 | Phone layout of archive scenes: ticket stub above the photo, text at full width | Critique 2, P2; step 4 | S | 3 | done 2026-11-25. At 520px and below `.scene` is one column and the stub lies on its side (month, day, year in a row, dashed divider on the left) above the photo; scene text 262px to 350px wide at 390. Desktop unchanged. B12 (stub hover) still applies at all widths. Deploy run 45558692141 succeeded. |
-| B4 | Show section off navy onto paper, taped flier the only dark object, title glow removed; waves and contrast rows redone | Critique 2, decided; step 2 | M | 3 | todo |
-| B5a | Offerings page, design note for Nick to approve: page outline, what the menu and hero links say, where the email link sits. Write it under "Offerings page" below and mark this row needs-decision | Planned additions; Critique 2, P1; step 5 | S | 3 | todo |
+| B4 | Show section off navy onto paper, taped flier the only dark object, title glow removed; waves and contrast rows redone | Critique 2, decided; step 2 | M | 3 | done 2026-11-25. Show section on `--warm`, one sheet with the gallery below; ink text, flier shadow brown; title `--orange-ink` with the archive title's teal print offset (4.18, large). Intro wave now teal to `#fde8c0`; contrast script has a show-title row, no fails at both widths. Done directly, not with workers (one section of one file). `docs/CRITIQUE.md` contrast table still lists navy ratios (B11). Deploy run 45559176338 succeeded. |
+| B5a | Offerings page, design note for Nick to approve: page outline, what the menu and hero links say, where the email link sits. Write it under "Offerings page" below and mark this row needs-decision | Planned additions; Critique 2, P1; step 5 | S | 3 | needs-decision 2026-11-25. Note written under "Offerings page": page outline, menu label (recommend "Classes & drums"), hero sentence words become the links, email link only on the Offerings page. Nick approves it and sends text, photos and the address. |
 | B5b | Move the shared CSS out of `index.html` into one stylesheet with its `put` line; prove the home page is unchanged at both widths | Split of B5 | M | 3 | todo |
 | B5c | Build `offerings.html` for drum circles and acting classes | Split of B5 | M | 3 | blocked: needs B5a approved and Nick's text |
 | B5d | Email inquiry link, menu and hero links on both pages, room for a fourth menu link at 390px | Split of B5 | S | 3 | blocked: needs B5c and the contact address |
@@ -55,6 +55,43 @@ Ordered by value (3 high), then size (S under an hour, M a session, L several se
 ## Offerings page
 
 B5 was split on 2026-11-25 into B5a to B5d (rows above). B5a's design note goes here.
+
+### Design note (B5a, 2026-11-25): waiting for Nick's approval
+
+**The page.** `offerings.html`, a second page with the home page's head, fonts, stylesheet (B5b),
+sticky menu, footer and back-to-top. Same paper-and-tape look; it reads as a programme insert.
+
+1. **Top.** The logo, smaller, linking home. Heading in Fraunces: "Come make something with us".
+   One plain line under it: what is on offer and that it is in Van Nuys (Nick's words).
+2. **Drum circles** (`id="drum-circles"`), laid out like an archive scene: a taped snapshot on
+   one side, a stage direction as the eyebrow ("[Enter the drums.]"), then plain facts in this
+   order: what it is, who it is for, when and where, what to bring, cost or donation. Ends with
+   an email link, "Ask about a drum circle", subject filled in.
+3. **Acting classes** (`id="acting-classes"`), the same shape, tilted the other way, teal tape
+   where the drums have orange. Ends with "Ask about acting classes".
+4. **Curtain call.** "Write to us" with the address shown as text (so people without a mail app
+   can copy it) and as a `mailto:` link; the Instagram link; nothing else. Donate stays on home.
+
+**Menu.** Home gets a fourth link, "Classes & drums", pointing at `offerings.html`. On the
+Offerings page the menu reads: Home, Drum circles, Acting classes, Write to us. At 390px four
+links do not fit one line, so B5d lets the menu wrap to two centred rows (or shortens "The year
+so far" to "The year").
+
+**Hero link on home.** Turn the words "lead drum circles" and "teach arts workshops" in the
+existing hero sentence into links to the two sections, instead of adding another button: Donate
+stays the hero's only button and the sentence already says it.
+
+**Where the email link sits.** On the Offerings page only: once under each offering, once in the
+curtain call. Not in the home hero and not in the footer, so it stays tied to an offering.
+
+**What Nick decides or sends.**
+1. Approve the outline above, or say what to change.
+2. The menu label: "Classes & drums" (recommended), "Join in", or "Offerings".
+3. "Arts workshops" in the hero vs "acting classes" on the page: recommend one name. Suggest
+   changing the hero to "teach acting classes" if acting is the only workshop.
+4. Text for each offering (the five facts above), one photo of each, and the contact address.
+
+Then B5c builds the page, with `put offerings.html` and a `put` per photo in the deploy workflow.
 
 ## Notes for later sessions
 
